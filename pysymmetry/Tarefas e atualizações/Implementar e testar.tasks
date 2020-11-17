@@ -1,4 +1,0 @@
-{"desc":"Criar um Teste do tipo  _is_representation_.","last_edited":1593224113043,"position":-2,"task_id":"bf60f8ce-afa7-462e-bf7a-ec2d1170d1fb"}
-{"desc":"Na função _.nprojection_. Criar filtro para entradas nulas da função irredutível.","last_edited":1593221422867,"position":-1,"task_id":"7819e734-e8eb-4623-8ff4-fdf2520a8183"}
-{"desc":"Retirar a entrada *row* da função projeção. Testar se vai influenciar em outras funções.\n","last_edited":1594403565248,"position":-3,"task_id":"e4d10c23-8250-4625-8ffe-1393ffa01c9a"}
-{"desc":"Testar a nova implementação da função *_avoid_inverse_*. Falta mais testes em nuvem. Não está sendo usado ainda nesta versão.","last_edited":1593227400155,"position":0,"task_id":"16273646-c307-4625-9eab-7cfe8ad81fbf"}
