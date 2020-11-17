@@ -1257,7 +1257,7 @@ class Group(PermutationGroup_generic):
         n, left = self.irreducible_representations(False)  #Nota: vou pensar em como implementar o __len__
         base = []
         #base_new = []
-        #info = [['degree', 'multiplicity']]
+        info = [['degree', 'multiplicity']]
 
         for i in range(n):
             multiplicity = left(i).inner_product(right)
@@ -1267,13 +1267,12 @@ class Group(PermutationGroup_generic):
                 pivots = P.pivots()
                 degree = left(i).degree()                
                 v0 = P[:, pivots]
-                
-                base.append([v0, (degree, multiplicity)])
-                #info.append([degree, multiplicity])
-#         if block_prevision:
-#             for k in info[1:]:
-#                 print(str(k[0]) + ' block size ' + str(k[1]) + 'x' + str(k[1]) )
-        return IsotypicBase(base)#, info
+                base.append([v0, [degree, multiplicity]])
+                info.append([degree, multiplicity])
+        if block_prevision:
+            for k in info[1:]:
+                print(str(k[0]) + ' block size ' + str(k[1]) + 'x' + str(k[1]) )
+        return base, info
 
 group = Group
 
@@ -1288,68 +1287,35 @@ class IsotypicBase(object):
         #super(IsotypicBase, self).__init__()
         #self.base = list(filter(lambda x: x!=None, base))
 
-        #self._base = list(filter(lambda x: x!=None, base))
-        self.isotypic_components = [b[0] for b in  base]
-        self._info = [b[1] for b in  base]
+        self.isotypic_components = base#[b[0] for b in  self._base]
+       
 
-    def _matrix_(self):
+    # def __repr__(self):
+    #     msg = []
+    #     for d, m in self._info:
+    #            msg.append("{} blocks of size  {} x {}\n".format(d, m, m))
+            
         
-        columns = self.isotypic_components
-        c = columns[0]
-        for columm in columns[1:]:
-            c = c.augment(columm, subdivide=True)
-
-        return c
-
-        
-
-    def __repr__(self):
-        msg = []
-        
-        for d, m in self._info:
-            if d==1:
-                b = 'Block'
-            else:
-                b = 'Blocks'
-            msg.append("{} {} of size  {} x {}\n".format(d, b, m, m))            
-        
-        return ''.join(tuple(msg))
+    #     return ''.join(tuple(msg))
 
     def __len__(self):
-        return len(self.isotypic_components)
+        return len(self.base)
     
     def get_blocks(self,  matrix_equiv):
-        import multiprocessing
-        n = 0 #multiprocessing.cpu_count()
-        if n>1: 
         #Nota: botar um if para não usar paralelização se o usuário tiver apenas uma cpu
-            blocks = pmap(lambda b: get_block(b, matrix_equiv),  self.isotypic_components)#Nota: adptar get_blocks
-        else:
-            blocks = [get_block(m, matrix_equiv) for m in self.isotypic_components]
+        blocks = pmap(lambda b: get_block(b, matrix_equiv),  self.isotypic_components)#Nota: adptar get_blocks
         return blocks
     
     def list(self):
         return  self.isotypic_components
 
     def matrix(self):
-#         columns = self.isotypic_components
-#         c = columns[0]
-#         for columm in columns[1:]:
-#             c = c.augment(columm)
+        columns= self.isotypic_components
+        c = columns[0]
+        for columm in columns[1:]:
+            c = c.augment(columm)
 
-        return self._matrix_()
-    
-    def block_diagonal_matrix(self, matrix_equiv):# Nota: Ver com Marcelo nome melhor pra essa função
-        lst = []
-        blocks = self.get_blocks(matrix_equiv)
-        for i, b in enumerate(blocks):
-            for j in range(self._info[i][0]):
-                lst.append(b)
-        
-        return block_diagonal_matrix(lst)
-        
-        
-    
+        return c
 
 
 
