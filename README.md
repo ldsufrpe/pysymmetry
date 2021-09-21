@@ -1,4 +1,4 @@
-## Package for Representation Theory of Finite GroupsIn Sagemath (v01)
+## Package for Representation Theory of Finite Groups in Sagemath (v01)
 
 
 
