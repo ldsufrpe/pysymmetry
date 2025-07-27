@@ -1,4 +1,4 @@
-# Welcome to pysymmetry
+# Welcome to PySymmetry
 
 **A Python library for applying group representation theory to problems with symmetry.**
 
@@ -6,9 +6,9 @@
 
 ### About the Project
 
-`pysymmetry` is a powerful tool built on SageMath designed to simplify complex computational problems by leveraging their underlying symmetries. Many problems in physics, engineering, and mathematics involve systems that are symmetric under certain transformations (like rotations or reflections). These symmetries can be mathematically described using group theory.
+`PySymmetry` is a powerful tool built on SageMath designed to simplify complex computational problems by leveraging their underlying symmetries. Many problems in physics, engineering, and mathematics involve systems that are symmetric under certain transformations (like rotations or reflections). These symmetries can be mathematically described using group theory.
 
-The core feature of this library is the **block diagonalization of equivariant operators**. By finding a symmetry-adapted basis, `pysymmetry` can transform a large, complex matrix into a set of smaller, independent block matrices. This decomposition significantly simplifies subsequent calculations, such as finding eigenvalues, and can lead to substantial performance improvements.
+The core feature of this library is the **block diagonalization of equivariant operators**. By finding a symmetry-adapted basis, `PySymmetry` can transform a large, complex matrix into a set of smaller, independent block matrices. This decomposition significantly simplifies subsequent calculations, such as finding eigenvalues, and can lead to substantial performance improvements.
 
 ### Key Features
 
@@ -19,7 +19,7 @@ The core feature of this library is the **block diagonalization of equivariant o
 
 ### Quick Example: Eigenvalues of a 1D Laplacian
 
-Let's find the eigenvalues of a 1D Laplacian operator, a common problem in physics. Using `pysymmetry`, we can exploit the reflection symmetry of the system to simplify the calculation.
+Let's find the eigenvalues of a 1D Laplacian operator, a common problem in physics. Using `PySymmetry`, we can exploit the reflection symmetry of the system to simplify the calculation.
 
 ```python
 # 1. Import the library and create the operator
