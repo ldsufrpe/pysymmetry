@@ -1,0 +1,17 @@
+# Informações do Projeto
+site_name: pysymmetry
+repo_url: https://github.com/ldsufrpe/pysymmetry 
+site_description: Documentação da biblioteca pysymmetry.
+site_author: Leon Silva, Marcelo Pedro
+
+# Configuração do Tema e Plugins
+theme:
+  name: material
+
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          paths: [../] # Adicione esta linha

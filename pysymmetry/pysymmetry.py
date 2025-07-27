@@ -7,6 +7,7 @@ __all__ = [
     'get_block'
 ]
 
+#version 0.2
 from sage.all import *
 from sage.groups.perm_gps.permgroup_element import PermutationGroupElement
 from sage.groups.perm_gps.permgroup import PermutationGroup_generic
