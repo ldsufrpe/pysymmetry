@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # PySymmetry
 
 PySymmetry is a Sage-based Python package for working with finite groups and their representations. It provides tools for:
@@ -58,4 +59,7 @@ For detailed API documentation, refer to inline docstrings in the source code.
 Distributed under the terms of the MIT License. See `LICENSE` for more information.
 
 
+=======
+## SageMath Package for Representation Theory of Finite Groups (v01)
+>>>>>>> 6b7557e6dbe33cefde22cc3b61d58c108f5e20e9
 
