@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Documentação da biblioteca pysymmetry.">
+        <meta name="description" content="Documentation pysymmetry framework.">
       
       
         <meta name="author" content="Leon Silva, Marcelo Pedro">
@@ -1999,7 +1999,11 @@ Representation space: Vector space of dimension 2 over Symbolic Ring
 
             <details class="quote">
               <summary>Source code in <code>pysymmetry/pysymmetry.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2010</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">2006</span>
+<span class="normal">2007</span>
+<span class="normal">2008</span>
+<span class="normal">2009</span>
+<span class="normal">2010</span>
 <span class="normal">2011</span>
 <span class="normal">2012</span>
 <span class="normal">2013</span>
@@ -2152,11 +2156,7 @@ Representation space: Vector space of dimension 2 over Symbolic Ring
 <span class="normal">2160</span>
 <span class="normal">2161</span>
 <span class="normal">2162</span>
-<span class="normal">2163</span>
-<span class="normal">2164</span>
-<span class="normal">2165</span>
-<span class="normal">2166</span>
-<span class="normal">2167</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">representation</span><span class="p">(</span><span class="n">generators</span><span class="p">,</span> <span class="n">matrices</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">QQbar</span><span class="p">):</span>
+<span class="normal">2163</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">representation</span><span class="p">(</span><span class="n">generators</span><span class="p">,</span> <span class="n">matrices</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">QQbar</span><span class="p">):</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Create a representation of an arbitrary group G.</span>
 
@@ -2408,7 +2408,11 @@ sage: [get_block(k[0],Id) for k in subspaces[0]] # The block decomposition of th
 
             <details class="quote">
               <summary>Source code in <code>pysymmetry/pysymmetry.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1324</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1320</span>
+<span class="normal">1321</span>
+<span class="normal">1322</span>
+<span class="normal">1323</span>
+<span class="normal">1324</span>
 <span class="normal">1325</span>
 <span class="normal">1326</span>
 <span class="normal">1327</span>
@@ -2490,11 +2494,7 @@ sage: [get_block(k[0],Id) for k in subspaces[0]] # The block decomposition of th
 <span class="normal">1403</span>
 <span class="normal">1404</span>
 <span class="normal">1405</span>
-<span class="normal">1406</span>
-<span class="normal">1407</span>
-<span class="normal">1408</span>
-<span class="normal">1409</span>
-<span class="normal">1410</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_block</span><span class="p">(</span><span class="n">columm_base</span><span class="p">,</span> <span class="n">matrix_equiv</span><span class="p">):</span> <span class="c1"># Nota: traduzir nome das variaveis</span>
+<span class="normal">1406</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_block</span><span class="p">(</span><span class="n">columm_base</span><span class="p">,</span> <span class="n">matrix_equiv</span><span class="p">):</span> <span class="c1"># Nota: traduzir nome das variaveis</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Return the matricial representation of matrix_equiv when restricted to the subspace whose basis is columm_base.</span>
 

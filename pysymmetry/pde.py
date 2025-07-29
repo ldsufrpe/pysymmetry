@@ -81,7 +81,7 @@ class nIsotypicBase(object):
 def nfactorization(g, words, matrices):    
         
     #g = words[0].parent()(g)
-    H = libgap.Group(words)
+    H = libgap.FiniteGroup(words)
     ans = H.EpimorphismFromFreeGroup().PreImagesRepresentative(g)
     l1 = str(ans)
     l1 = avoid_inverse(g, words, l1)    

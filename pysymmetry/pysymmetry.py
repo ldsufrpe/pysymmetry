@@ -1,5 +1,5 @@
 __all__ = [
-    'Group',
+    'FiniteGroup',
     'group',
     'MapRepresentation',
     'Dg_Linear_Transformation',
@@ -32,10 +32,10 @@ from .parallel import pmap
 
 
 
-################################## Group #############################
+################################## FiniteGroup #############################
 
 
-class Group(PermutationGroup_generic):
+class FiniteGroup(PermutationGroup_generic):
     def __init__(self, per_group, field=QQbar, matrix=False):
 
         if isinstance(per_group, PermutationGroup_generic):
@@ -78,16 +78,16 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
 
-        OUTPUT: The regular representation defined over the Group given by self. 
+        OUTPUT: The regular representation defined over the FiniteGroup given by self. 
 
 
         EXAMPLES:
 
         We define the regular representation over the cyclic group of 4 elements ::
 
-            sage: G = Group(CyclicPermutationGroup(4)) 
+            sage: G = FiniteGroup(CyclicPermutationGroup(4)) 
             sage: reg = G.regular_representation()
             sage: [reg(g) for g in G]
             [Linear transformation associated with element g=(), represented by the non-singular matrix:
@@ -122,7 +122,7 @@ class Group(PermutationGroup_generic):
         We define the group of symmetries of regular hexagon and the regular representation over this group ::
         
             sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
-            sage: G = Group(generators)
+            sage: G = FiniteGroup(generators)
             sage: reg = G.regular_representation()
             sage: g = G.an_element()
             sage: reg(g)
@@ -144,7 +144,7 @@ class Group(PermutationGroup_generic):
         We define the regular representation over the symmetric group of 4 simbols ::
 
             sage: H = SymmetricGroup(4)
-            sage: G = Group(H);
+            sage: G = FiniteGroup(H);
             sage: reg = G.regular_representation();
             sage: g = G.an_element()
             sage: reg(g)
@@ -159,13 +159,13 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """                
 
         
         # usei metodos do orderpy pra deixar os calculos mais rapidos
-        #NOTA: precisa verificar se g esta em Group
+        #NOTA: precisa verificar se g esta em FiniteGroup
         matrices = [self._regular_(g).matrix() for g in self.gens()]
         M = MatrixGroup(matrices)
         return MapRepresentation(Hom(self, M), self._regular_)
@@ -177,7 +177,7 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
         - ``show_table`` -- a boolean (default: `True`) ; shows a table of each irreducible representation applied at the generators of self.
 
         OUTPUT: If show_table=True; return number of irreducible representions and irreducible representions themselves.
@@ -188,18 +188,18 @@ class Group(PermutationGroup_generic):
 
         We define the symmetric group of 4 simbols and calculate its irreducible representations ::
 
-            sage: G = Group(SymmetricGroup(4));
+            sage: G = FiniteGroup(SymmetricGroup(4));
             sage: n, irr = G.irreducible_representations(False) #Irreducible representations
             sage: n
             5
             sage: irr(0)
             Map: 
-             From: Permutation Group with generators [(1,2), (1,2,3,4)] 
+             From: Permutation FiniteGroup with generators [(1,2), (1,2,3,4)] 
              To: Matrix group over Integer Ring with 2 generators ([1], [1]).
             
             sage: irr(4)
             Map: 
-             From: Permutation Group with generators [(1,2), (1,2,3,4)] 
+             From: Permutation FiniteGroup with generators [(1,2), (1,2,3,4)] 
              To: Matrix group over Integer Ring with 2 generators (
             [ 0  1  0]  [ 0  0 -1]
             [ 1  0  0]  [ 0  1  0]
@@ -208,13 +208,13 @@ class Group(PermutationGroup_generic):
 
         We define the representation by permutation on the cyclic group calculate its irreducible representations ::
 
-            sage: G = Group(CyclicPermutationGroup(6))
+            sage: G = FiniteGroup(CyclicPermutationGroup(6))
             sage: irr = G.irreducible_representations(True) #Irreducible representations
             ||||||SAIDA A SER PENSADA|||||||
 
         We calculate the irreducible representations of the group of symmetries of a regular tetrahedron ::
         
-            sage: G = Group(AlternatingGroup(4));
+            sage: G = FiniteGroup(AlternatingGroup(4));
             sage: irr = G.irreducible_representations(True) #Irreducible representations
             sage: for j in range(n):
              ||||||SAIDA A SER PENSADA|||||||
@@ -222,30 +222,30 @@ class Group(PermutationGroup_generic):
         We define the group of symmetries of regular hexagon and calculate its irreducible representations  ::
             
             sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
-            sage: G = Group(PermutationGroup(generators))
+            sage: G = FiniteGroup(PermutationGroup(generators))
             sage: n,irr = G.irreducible_representations(False) #Irreducible representations
             sage: for j in range(n):
                     print(irr(j))
             Map: 
-             From: Permutation Group with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+             From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
              To: Matrix group over Integer Ring with 2 generators ([1], [1]).
             Map: 
-             From: Permutation Group with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+             From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
              To: Matrix group over Integer Ring with 2 generators ([1], [-1]).
             Map: 
-             From: Permutation Group with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+             From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
              To: Matrix group over Integer Ring with 2 generators ([-1], [-1]).
             Map: 
-             From: Permutation Group with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+             From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
              To: Matrix group over Integer Ring with 2 generators ([-1], [1]).
             Map: 
-             From: Permutation Group with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+             From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
              To: Matrix group over Universal Cyclotomic Field with 2 generators (
             [E(3)^2      0]  [0 1]
             [     0   E(3)], [1 0]
             ).
             Map: 
-             From: Permutation Group with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+             From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
              To: Matrix group over Universal Cyclotomic Field with 2 generators (
             [-E(3)^2       0]  [ 0 -1]
             [      0   -E(3)], [-1  0]
@@ -257,7 +257,7 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
         
@@ -313,7 +313,7 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
         - ``right`` -- representation ; a representation defined over the same group as self.
 
         OUTPUT: A list of matrices representing the projections operators over the isotypics subespaces of right.
@@ -323,7 +323,7 @@ class Group(PermutationGroup_generic):
 
         We define the symmetric group of 3 simbols and the isotypic projections associated to the regular representation of this group ::
 
-            sage: G = Group(SymmetricGroup(3));
+            sage: G = FiniteGroup(SymmetricGroup(3));
             sage: reg = G.regular_representation();
             sage: G.isotypic_projection(reg)
              [
@@ -347,7 +347,7 @@ class Group(PermutationGroup_generic):
 
         We define the representation by permutation on the cyclic group and calculate the isotypic projectors ::
 
-            sage: G = Group(CyclicPermutationGroup(4))
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
@@ -385,7 +385,7 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
         n, left = self.irreducible_representations(False)
@@ -404,7 +404,7 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
         - ``rep`` -- representation ; a representation defined over the same group as self.
         - ``isotypic_components`` -- a boolean (default: `False`) ; if False returns the change base matrix, if True returns a list with a base for each isotypic component :: 
 
@@ -415,7 +415,7 @@ class Group(PermutationGroup_generic):
 
         We define the symmetric group of 3 simbols change basis matrix associated to the isotypic decomposition  ::
 
-            sage: G = Group(SymmetricGroup(3));
+            sage: G = FiniteGroup(SymmetricGroup(3));
             sage: reg = G.regular_representation();
             sage: G.isotypic_base(reg, isotypic_components=False)
             [ 1| 1| 2 -1  0  0]
@@ -440,7 +440,7 @@ class Group(PermutationGroup_generic):
 
         We define the representation by permutation on the cyclic group and calculate its isotypic decompositions ::
 
-            sage: G = Group(CyclicPermutationGroup(4))
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
@@ -495,7 +495,7 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
         proj_lst = self.isotypic_projection(rep)  #NOTA:devemos usar sempre regular representation(pergunta)??? NAO
@@ -511,7 +511,7 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
         - ``right`` -- representation ; a representation defined over the same group as self.
         - ``i,j,k`` --  integers ; integers numbers representing the projection(or transfer) chosen;
                 i- will choose the irreducible representation, and its range is from 0 until the number of irreducibles. ::
@@ -530,7 +530,7 @@ class Group(PermutationGroup_generic):
 
         We define the representation by permutation on the cyclic group of four elements and calculate its projectors  ::
         
-            sage: G = Group(CyclicPermutationGroup(4))
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
@@ -588,7 +588,7 @@ class Group(PermutationGroup_generic):
 
         We define the regular representation over the symmetric group of 3 simbols and we calculate one of its projectors ::
 
-            sage: G = Group(SymmetricGroup(3)) 
+            sage: G = FiniteGroup(SymmetricGroup(3)) 
             sage: reg = G.regular_representation();
             sage: view(G.projection(2,1,1, reg),latex=False) # The function view creates a better visualization
             [                   1  1/2*I*sqrt(3) - 1/2 -1/2*I*sqrt(3) - 1/2                    0                    0                    0]
@@ -604,7 +604,7 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
         
@@ -624,7 +624,7 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
         - ``right`` -- representation ; a representation defined over the same group as self.
 
         OUTPUT: A change basis matrix that decomposes right in its irreducible components.
@@ -635,7 +635,7 @@ class Group(PermutationGroup_generic):
 
         We define the representation by permutation on the cyclic group of four elements and calculate its decomposition into irreducibles(Note that in this case because multiplicity we get the same result with the isotypic base)  ::
         
-            sage: G = Group(CyclicPermutationGroup(4))
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
@@ -771,7 +771,7 @@ class Group(PermutationGroup_generic):
 
         We define the regular representation over the symmetric group of 3 simbols and we decompose into irreducible components ::
 
-            sage: G = Group(SymmetricGroup(3)) 
+            sage: G = FiniteGroup(SymmetricGroup(3)) 
             sage: reg = G.regular_representation();
             sage: C = G.base_change_matrix(reg); 
             sage: view(C, latex=False) # This Function creates a better visualization of the matrix
@@ -807,7 +807,7 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
         
@@ -844,7 +844,7 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
         - ``right`` -- representation ; a representation defined over the same group as self.
         - ``row`` -- an integer (default: 0) ; an integer in the range of the degree of right, this number will choose the set o projectors to be chosen in the contruction of the base :: 
 
@@ -856,7 +856,7 @@ class Group(PermutationGroup_generic):
 
         We define the representation by permutation on the cyclic group of four elements and decompose an equivariant operator under this representation  ::
         
-            sage: G = Group(CyclicPermutationGroup(4))
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
@@ -880,7 +880,7 @@ class Group(PermutationGroup_generic):
 
         We define a representation on the permutation group, and decompose an equivariant operator  ::
             
-            sage: G = Group(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
+            sage: G = FiniteGroup(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
             sage: gens = G.gens()
             sage: matrices = [g.matrix() for g in gens]
             sage: rep = representation(gens, matrices)
@@ -929,7 +929,7 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
         ###Mudar Nome, talvez symmetry_adapted_basis
@@ -968,7 +968,7 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
         - ``right`` -- representation ; a representation defined over an arbitrary group given by self.
         - ``block_prevision`` -- a boolean (default: `False`) ; if set to True then prints a string describing the number and orders of blocks to an equivariant operator under right.
 
@@ -980,7 +980,7 @@ class Group(PermutationGroup_generic):
         We define the regular representation(reg) over the symmetric group of 4 simbols and calculate the structure of an equivariant operator under reg ::
 
             sage: H = SymmetricGroup(4)
-            sage: G = Group(H);
+            sage: G = FiniteGroup(H);
             sage: reg = G.regular_representation();
             sage: G.quick_block_prevision(reg)
             [['degree', 'multiplicity'], [1, 1], [1, 1], [2, 2], [3, 3], [3, 3]]
@@ -995,7 +995,7 @@ class Group(PermutationGroup_generic):
 
         We define the representation by permutation on the cyclic group and calculate the structure of an equivariant operator ::
 
-            sage: G = Group(CyclicPermutationGroup(4))
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
@@ -1008,7 +1008,7 @@ class Group(PermutationGroup_generic):
 
         We calculate the irreducible representations of the group of symmetries of tetrahedron and calculate the structure of an equivariant operator inder its irreducibles ::
         
-            sage: G = Group(AlternatingGroup(4));
+            sage: G = FiniteGroup(AlternatingGroup(4));
             sage: n,irr = G.irreducible_representations(False) ##Irreducible representations
             sage: for j in range(n):
                     print(G.quick_block_prevision(irr(j),block_prevision=True))
@@ -1047,7 +1047,7 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """        
         n, left = self.irreducible_representations(False) 
@@ -1075,7 +1075,7 @@ class Group(PermutationGroup_generic):
 
         INPUT:
 
-        - ``self`` -- Group ; a  Sage permutation group or a group of the class Group.
+        - ``self`` -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.
         - ``right`` -- representation ; a representation defined over the same group as self.        
         - ``block_prevision`` -- a boolean (default: `False`) ; if set to True then prints a string describing the number and orders of blocks to an equivariant operator under right.
         
@@ -1088,7 +1088,7 @@ class Group(PermutationGroup_generic):
 
         We define the representation by permutation on the cyclic group of four elements and calculates the subspaces that gives one copy of each block of the equivariant operator under this representation  ::
         
-            sage: G = Group(CyclicPermutationGroup(4))
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
@@ -1154,7 +1154,7 @@ class Group(PermutationGroup_generic):
 
         We define a representation on the permutation group, and calculates parts of the symmetry adapted basis that generates no repetition in the blocks of an equivariant operator  ::
 
-            sage: G = Group(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
+            sage: G = FiniteGroup(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
             sage: gens = G.gens()
             sage: matrices = [g.matrix() for g in gens]
             sage: rep = representation(gens, matrices)
@@ -1208,7 +1208,7 @@ class Group(PermutationGroup_generic):
         We define the regular representation(reg) over the symmetric group of 3 simbols and calculate the subspaces that gives all the blocks of an equivariant operator without repetition ::
 
             sage: H = SymmetricGroup(3)
-            sage: G = Group(H);
+            sage: G = FiniteGroup(H);
             sage: reg = G.regular_representation();
             sage: G.base_change_eigenvalue_reduction_new(reg,block_prevision=True)
             1 block size 1x1
@@ -1250,7 +1250,7 @@ class Group(PermutationGroup_generic):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """       
         row = 0
@@ -1274,7 +1274,7 @@ class Group(PermutationGroup_generic):
                 print(str(k[0]) + ' block size ' + str(k[1]) + 'x' + str(k[1]) )
         return base, info
 
-group = Group
+group = FiniteGroup
 
 ######################################## Morphism ###############################################
    
@@ -1334,7 +1334,7 @@ def get_block(columm_base, matrix_equiv): # Nota: traduzir nome das variaveis
 
     We define the representation by permutation on the cyclic group of four elements and calculates the blocks of an equivariant operator under this representation  ::
 
-        sage: G = Group(CyclicPermutationGroup(4))
+        sage: G = FiniteGroup(CyclicPermutationGroup(4))
         sage: generators = G.gens()
         sage: matrices = [g.matrix() for g in generators]
         sage: rep = representation(generators, matrices)
@@ -1348,7 +1348,7 @@ def get_block(columm_base, matrix_equiv): # Nota: traduzir nome das variaveis
 
     We define a representation on a permutation group, and calculates the blocks(no repetition) of an equivariant operator  ::
 
-        sage: G = Group(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
+        sage: G = FiniteGroup(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
         sage: gens = G.gens()
         sage: matrices = [g.matrix() for g in gens]
         sage: rep = representation(gens, matrices)
@@ -1377,7 +1377,7 @@ def get_block(columm_base, matrix_equiv): # Nota: traduzir nome das variaveis
     We define the regular representation(reg) over the symmetric group of 3 simbols and calculate the blocks of an equivariant operator without repetition ::
 
         sage: H = SymmetricGroup(3)
-        sage: G = Group(H);
+        sage: G = FiniteGroup(H);
         sage: reg = G.regular_representation();
         sage: Id = matrix.identity(reg.degree()); # Identity matrix
         sage: reg.is_equivariant_to(Id)
@@ -1398,7 +1398,7 @@ def get_block(columm_base, matrix_equiv): # Nota: traduzir nome das variaveis
 
     - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-    - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+    - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
 
     """
     columm_pinv = columm_base.pseudoinverse()
@@ -1438,7 +1438,7 @@ class MapRepresentation(SetMorphism):
 
         We define the representation by permutation on the cyclic group of 4 elements and calculate its inner products with the trivial representation ::
 
-            sage: G = Group(CyclicPermutationGroup(4))
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
@@ -1457,7 +1457,7 @@ class MapRepresentation(SetMorphism):
         We define the regular representation over the symmetric group of 4 simbols and calculate the inner products between the regular representation and the irreducible representations ::
 
             sage: H = SymmetricGroup(4)
-            sage: G = Group(H);
+            sage: G = FiniteGroup(H);
             sage: n,irr = G.irreducible_representations(False) #Irreducible representations
             sage: reg = G.regular_representation();
             sage: [reg.inner_product(irr(j)) for j in range(n)] # The inner product between the regular and irreducibles
@@ -1469,7 +1469,7 @@ class MapRepresentation(SetMorphism):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.        
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.        
         """
 
         
@@ -1557,7 +1557,7 @@ class MapRepresentation(SetMorphism):
         We define the regular representation over the symmetric group of 4 simbols and calculate the image of a random element ::
 
             sage: H = SymmetricGroup(4)
-            sage: G = Group(H);
+            sage: G = FiniteGroup(H);
             sage: reg = G.regular_representation();
             sage: reg.an_element()
             Linear transformation associated with element g=(1,3,4), represented by the non-singular matrix:
@@ -1572,7 +1572,7 @@ class MapRepresentation(SetMorphism):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """                
         g = self._domain.an_element()
@@ -1611,7 +1611,7 @@ class MapRepresentation(SetMorphism):
         We define the regular representation over the symmetric group of 4 simbols and calculate its degree ::
 
             sage: H = SymmetricGroup(4)
-            sage: G = Group(H);
+            sage: G = FiniteGroup(H);
             sage: reg = G.regular_representation();
             sage: reg.degree()
             24
@@ -1623,7 +1623,7 @@ class MapRepresentation(SetMorphism):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """        
         d = self.an_element()
@@ -1679,7 +1679,7 @@ class MapRepresentation(SetMorphism):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012. 
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012. 
 
             """
 
@@ -1729,7 +1729,7 @@ class MapRepresentation(SetMorphism):
 
          - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-         - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+         - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
 
@@ -1773,7 +1773,7 @@ class MapRepresentation(SetMorphism):
         We define the regular representation over the symmetric group of 4 simbols and ask if is irreducible ::
         
             sage: H = SymmetricGroup(4)
-            sage: G = Group(H);
+            sage: G = FiniteGroup(H);
             sage: reg = G.regular_representation();
             sage: reg.is_irreducible()
             False          
@@ -1784,7 +1784,7 @@ class MapRepresentation(SetMorphism):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
         if bool(self.inner_product(self) == self._domain.field.one()):
@@ -1854,7 +1854,7 @@ class Dg_Linear_Transformation(VectorSpaceMorphism):
 
         We define the representation by permutation on the cyclic group of 4 elements and calculate its characters ::
 
-            sage: G = Group(CyclicPermutationGroup(4)) 
+            sage: G = FiniteGroup(CyclicPermutationGroup(4)) 
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices); rep
@@ -1888,7 +1888,7 @@ class Dg_Linear_Transformation(VectorSpaceMorphism):
         We define the regular representation over the symmetric group of 4 simbols and calculate its characters ::
 
             sage: H = SymmetricGroup(4)
-            sage: G = Group(H);
+            sage: G = FiniteGroup(H);
             sage: reg = G.regular_representation();
             sage: [ [g,reg(g).character()] for g in G]
             [[(), 24],
@@ -1924,7 +1924,7 @@ class Dg_Linear_Transformation(VectorSpaceMorphism):
 
         - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+        - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """                
         return self.trace()
@@ -2028,7 +2028,7 @@ def representation(generators, matrices, field=QQbar):
         sage: rep = representation(generators, matrices)
         sage: rep
         Map: 
-         From: Permutation Group with generators [(1,2,3), (1,3)] 
+         From: Permutation FiniteGroup with generators [(1,2,3), (1,3)] 
          To: Matrix group over Algebraic Field with 2 generators (
         [0 1 0]  [0 0 1]
         [0 0 1]  [0 1 0]
@@ -2075,7 +2075,7 @@ def representation(generators, matrices, field=QQbar):
 
     We choose a random element of the group and show its matrix ::
 
-        sage: G = Group(generators)
+        sage: G = FiniteGroup(generators)
         sage: g = G.an_element()
         sage: rep(g)
         Linear transformation associated with element g=(1,3)(4,6), represented by the non-singular matrix:
@@ -2135,11 +2135,11 @@ def representation(generators, matrices, field=QQbar):
 
     - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.
 
-    - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer Science & Business Media, 2012.     
+    - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
     
     """
 
-    G = Group(generators, field)
+    G = FiniteGroup(generators, field)
     identity = G.identity()
     #matrices = [m.change_ring(field) for m in matrices] # NOTA: deixa o codigo lento
     M = MatrixGroup(matrices)
@@ -2152,7 +2152,7 @@ def representation(generators, matrices, field=QQbar):
 
     @cached_function
     def rep(g):
-        # Nota: Garantir que g pertence a classe Group
+        # Nota: Garantir que g pertence a classe FiniteGroup
         if g == identity:
             return Dg_Linear_Transformation(H, matrix.identity(n), g)
         else:
