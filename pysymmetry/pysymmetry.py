@@ -811,7 +811,7 @@ class Group(PermutationGroup_generic):
         
         """
         
-        #Nota: right pode inclusive ser a irredutível????
+        
         row = 0
         n, left = self.irreducible_representations(False)  #Nota: vou pensar em como implementar o __len__
         base = []
@@ -832,9 +832,9 @@ class Group(PermutationGroup_generic):
                         base.append(v)       
         b = base[0]
         for v in base[1:]:
-            b = b.augment(v)  #Nota: verificar de é mais edequado. Aí não precisa do numero de colunas
-        #     #base_change_matrix = block_matrix(base, ncols=ncols)
-        return b #IsotypicBase(base)
+            b = b.augment(v) 
+        
+        return b
 
 
     def base_change_matrix_new_off_filter_optimization(self, right, row=0):
@@ -958,9 +958,8 @@ class Group(PermutationGroup_generic):
 
         b = base[0]
         for v in base[1:]:
-            b = b.augment(v)  #Nota: verificar se é mais edequado. Aí não precisa do numero de colunas
-            #base_change_matrix = block_matrix(base, ncols=ncols)
-        return b #IsotypicBase(base)
+            b = b.augment(v)  
+        return b 
 
     #####################################################################################
     def quick_block_prevision(self, right, block_prevision=False):##Nota, consertar row ##Revisar a documentacao do True or False
@@ -1278,10 +1277,7 @@ class Group(PermutationGroup_generic):
 group = Group
 
 ######################################## Morphism ###############################################
-
-
-
-    
+   
 class IsotypicBase(object):
     """docstring for ClassName"""
     def __init__(self, base):
@@ -1505,7 +1501,7 @@ class MapRepresentation(SetMorphism):
 
     def direct_sum(self, *reps):#Nota: como vai ficar a questão da ordem das reps?
 	    """INPUT- A list of representations.
-	    OUTPUT- Their direct sum"""
+	       OUTPUT- Their direct sum"""
 	    reps = list(reps)
 	    domain = self._domain
 	    reps.insert(0, self)	
@@ -1744,7 +1740,7 @@ class MapRepresentation(SetMorphism):
                 return False
         return True
 
-    def is_irreducible(self):##Discutir Reducibilidade associada a um corpo.
+    def is_irreducible(self):##Nota, Discutir Reducibilidade associada a um corpo.
         r"""
         Tests if a representation defined over an arbitrary group G is irreducible.
 
