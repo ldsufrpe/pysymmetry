@@ -8,7 +8,7 @@ This page provides a detailed reference for the `pysymmetry` library's public AP
 
 This is the main module containing the core classes and functions for working with group theory and representations.
 
-::: pysymmetry.Group
+::: pysymmetry.FiniteGroup
     options:
       show_root_heading: true
       show_source: false

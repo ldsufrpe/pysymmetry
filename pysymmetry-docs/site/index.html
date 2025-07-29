@@ -426,7 +426,7 @@
 <p>The core feature of this library is the <strong>block diagonalization of equivariant operators</strong>. By finding a symmetry-adapted basis, <code>PySymmetry</code> can transform a large, complex matrix into a set of smaller, independent block matrices. This decomposition significantly simplifies subsequent calculations, such as finding eigenvalues, and can lead to substantial performance improvements.</p>
 <h3 id="key-features">Key Features</h3>
 <ul>
-<li><strong>Group and Representation Theory Tools:</strong> Provides an intuitive interface for working with permutation groups and their matrix representations.</li>
+<li><strong>FiniteGroup and Representation Theory Tools:</strong> Provides an intuitive interface for working with permutation groups and their matrix representations.</li>
 <li><strong>Automatic Block Decomposition:</strong> Implements algorithms to find the symmetry-adapted basis and automatically block-diagonalize equivariant matrices.</li>
 <li><strong>Performance:</strong> Accelerates calculations by breaking down large problems into smaller, more manageable ones. The library includes parallel processing capabilities to speed up computations.</li>
 <li><strong>Built on SageMath:</strong> Leverages the extensive mathematical capabilities of the SageMath ecosystem.</li>
@@ -434,7 +434,7 @@
 <h3 id="quick-example-eigenvalues-of-a-1d-laplacian">Quick Example: Eigenvalues of a 1D Laplacian</h3>
 <p>Let's find the eigenvalues of a 1D Laplacian operator, a common problem in physics. Using <code>PySymmetry</code>, we can exploit the reflection symmetry of the system to simplify the calculation.</p>
 <pre><code class="language-python"># 1. Import the library and create the operator
-from pysymmetry import Group, representation
+from pysymmetry import FiniteGroup, representation
 from pysymmetry.util import laplacian1d, get_block
 import numpy as np
 
@@ -449,7 +449,7 @@ def generators1d(n):
         string_reflexao_sigma += str((j, n - j + 1))
     return [string_reflexao_sigma]
 
-G = Group(generators1d(n))
+G = FiniteGroup(generators1d(n))
 
 # 3. Get the natural representation and the symmetry-adapted basis
 rep = G.natural_representation()
