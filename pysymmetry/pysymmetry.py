@@ -1474,13 +1474,24 @@ class MapRepresentation(SetMorphism):
 
         
         #NOTA: Verificar se right eh uma representation() (class Representation)
-        lst = [
-            self(g.inverse()).character() * right(g).character() for g in self._domain
-              ]  
-        s = sum(lst)
-        if self._domain.field == SR:
+        group = self._domain
+        s = 0
+        
+        # O método conjugacy_classes() retorna uma lista de classes do grupo.
+        for conj_class in group.conjugacy_classes():
+            # Pega um único representante para a classe.
+            g = conj_class.representative()
+            
+            # O tamanho da classe é o peso do termo na soma.
+            class_size = len(conj_class)
+            
+            term = class_size * self(g.inverse()).character() * right(g).character()
+            s += term
+            
+        if group.field == SR:
             s = s.simplify_full()
-        return (1 / self._domain.order()) * s  #Nota: verificar se o int gera algum erro
+            
+        return (1 / group.order()) * s
     
 
     def tensor_product(self, right):
@@ -1499,21 +1510,22 @@ class MapRepresentation(SetMorphism):
         return representation(gens, image, field)
         
 
-    def direct_sum(self, *reps):#Nota: como vai ficar a questão da ordem das reps?
-	    """INPUT- A list of representations.
-	       OUTPUT- Their direct sum"""
-	    reps = list(reps)
-	    domain = self._domain
-	    reps.insert(0, self)	
-	    for k in reps:
-	        if not k._domain==domain:
-	        	msg = 'The domains {} and {} is not the same.' #Nota: Melhorar mensagen?
-	        	raise TypeError(''.join(msg).format(domain, k._domain))            
-	    field = domain.field
-	    gens = domain.gens()    
-	    image = [block_diagonal_matrix([rep(g).matrix() for rep in reps]) for g in gens]
-	    #Nota:Vamos pensar melhor como o parametro field é util.
-	    return representation(gens, image, field)
+    def direct_sum(self, *reps):
+        """
+        INPUT: A list of representations.
+        OUTPUT: Their direct sum
+        """
+        reps = list(reps)
+        domain = self._domain
+        reps.insert(0, self)    
+        for k in reps:
+            if not k._domain == domain:
+                msg = 'The domains {} and {} are not the same.'
+                raise TypeError(msg.format(domain, k._domain))            
+        field = domain.field
+        gens = domain.gens()    
+        image = [block_diagonal_matrix([rep(g).matrix() for rep in reps]) for g in gens]
+        return representation(gens, image, field)
 
     def an_element(self):
         r"""

@@ -2,6 +2,8 @@
 import sys
 import os
 import unittest
+import pytest
+
 
 # Add the parent directory to the path to allow package imports
 # This is necessary to run the script directly with 'sage'
@@ -219,7 +221,38 @@ class TestGroup(unittest.TestCase):
         expected = [['degree', 'multiplicity'], [1, 1], [1, 1], [2, 2], [3, 3], [3, 3]]
         self.assertEqual(prevision, expected)
 
+    def test_inner_product(self):
+        """Tests the inner product calculation between representations."""
+        
+        # Test 1: Regular representation inner product with itself
+        G = FiniteGroup(CyclicPermutationGroup(4))
+        reg = G.regular_representation()
+        self.assertEqual(reg.inner_product(reg), 4)  # Should be equal to group order
+        
+        # Test 2: Inner product with trivial representation
+        n, irr = G.irreducible_representations(show_table=False)
+        self.assertEqual(reg.inner_product(irr(0)), 1)  # Regular rep contains trivial rep once
+        
+        # Test 3: Inner product between different irreducible representations
+        G = FiniteGroup(DihedralGroup(3))
+        n, irr = G.irreducible_representations(show_table=False)
+        # Different irreps should have inner product 0
+        self.assertEqual(irr(0).inner_product(irr(1)), 0)
+        
+        # Test 4: Inner product with symbolic entries
+        generators = ["(1,2,3,4,5,6)", "(1,4)(2,3)(5,6)"]
+        matrices = [
+            matrix(SR, [[1/2, -sqrt(3)/2], [sqrt(3)/2, 1/2]]),
+            matrix(SR, [[-1, 0], [0, 1]])
+        ]
+        rep = representation(generators, matrices, field=SR)
+        self.assertEqual(rep.inner_product(rep), 1)  # Irreducible rep has inner product 1 with itself
+
 if __name__ == '__main__':
     unittest.main()
 # cd pysymmetry/pysymmetry
 # sage test.py -v
+
+# or install pytest
+#pytest -v pysymmetry/test.py
+#pytest --html=report.html pysymmetry/test.py
