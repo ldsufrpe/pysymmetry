@@ -322,18 +322,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pysymmetry.FiniteGroup.base_change_matrix" class="md-nav__link">
+  <a href="#pysymmetry.FiniteGroup.base_to_irreducibles" class="md-nav__link">
     <span class="md-ellipsis">
-      base_change_matrix
+      base_to_irreducibles
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pysymmetry.FiniteGroup.base_change_matrix_new_off_filter_optimization" class="md-nav__link">
+  <a href="#pysymmetry.FiniteGroup.base_equivariant_to_blocks" class="md-nav__link">
     <span class="md-ellipsis">
-      base_change_matrix_new_off_filter_optimization
+      base_equivariant_to_blocks
     </span>
   </a>
   
@@ -551,18 +551,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pysymmetry.FiniteGroup.base_change_matrix" class="md-nav__link">
+  <a href="#pysymmetry.FiniteGroup.base_to_irreducibles" class="md-nav__link">
     <span class="md-ellipsis">
-      base_change_matrix
+      base_to_irreducibles
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#pysymmetry.FiniteGroup.base_change_matrix_new_off_filter_optimization" class="md-nav__link">
+  <a href="#pysymmetry.FiniteGroup.base_equivariant_to_blocks" class="md-nav__link">
     <span class="md-ellipsis">
-      base_change_matrix_new_off_filter_optimization
+      base_equivariant_to_blocks
     </span>
   </a>
   
@@ -970,8 +970,8 @@ sage: G.base_change_eigenvalue_reduction_new(reg,block_prevision=True)
 <div class="doc doc-object doc-function">
 
 
-<h3 id="pysymmetry.FiniteGroup.base_change_matrix" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">base_change_matrix</span><span class="p">(</span><span class="n">right</span><span class="p">)</span></code>
+<h3 id="pysymmetry.FiniteGroup.base_to_irreducibles" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">base_to_irreducibles</span><span class="p">(</span><span class="n">right</span><span class="p">)</span></code>
 
 </h3>
 
@@ -991,7 +991,7 @@ sage: G.base_change_eigenvalue_reduction_new(reg,block_prevision=True)
 sage: generators = G.gens()
 sage: matrices = [g.matrix() for g in generators]
 sage: rep = representation(generators, matrices)
-sage: A = G.base_change_matrix(rep); A
+sage: A = G.base_to_irreducibles(rep); A
 [ 1  1  1  1]
 [ 1 -1  I -I]
 [ 1  1 -1 -1]
@@ -1019,7 +1019,7 @@ sage: P = matrix([[5,3,4],[0,3,4],[0,0,4]]);P
 sage: matrices = [P.inverse()*matrix([[1,0,0],[0,1/2,-sqrt(3)/2],[0,sqrt(3)/2,1/2]])*P,P.inverse()*matrix([[1,0,0],[0,-1,0],[0,0,1]])*P];
 sage: rep = representation(generators, matrices, field=QQbar)
 sage: G = rep.domain()
-sage: B = G.base_change_matrix(rep); 
+sage: B = G.base_to_irreducibles(rep); 
 sage: view(B,latex=False) # This function creates a better visualization of the matrix
 [        12       -9/5      -54/5]
 [         0    3*I + 3 -18*I + 18]
@@ -1118,7 +1118,7 @@ sage: [view(B.inverse()*rep(g).matrix()*B, latex=False) for g in G]
 <p>We define the regular representation over the symmetric group of 3 simbols and we decompose into irreducible components ::</p>
 <pre><code>sage: G = FiniteGroup(SymmetricGroup(3)) 
 sage: reg = G.regular_representation();
-sage: C = G.base_change_matrix(reg); 
+sage: C = G.base_to_irreducibles(reg); 
 sage: view(C, latex=False) # This Function creates a better visualization of the matrix
 [                   1                    1                    1                    0                    0                    3]
 [                   1                    1  1/2*I*sqrt(3) - 1/2                    0                    0 -3/2*I*sqrt(3) - 3/2]
@@ -1164,8 +1164,8 @@ sage: view(A, latex=False)
 <div class="doc doc-object doc-function">
 
 
-<h3 id="pysymmetry.FiniteGroup.base_change_matrix_new_off_filter_optimization" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">base_change_matrix_new_off_filter_optimization</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+<h3 id="pysymmetry.FiniteGroup.base_equivariant_to_blocks" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">base_equivariant_to_blocks</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
 
 </h3>
 
@@ -1189,7 +1189,7 @@ sage: rep = representation(generators, matrices)
 sage: A = matrix.circulant([1,2,3,4])
 sage: rep.is_equivariant_to(A)
 True
-sage: P = G.base_change_matrix_new_off_filter_optimization(rep); P
+sage: P = G.base_equivariant_to_blocks(rep); P
 [ 1  1  1  1]
 [ 1 -1  I -I]
 [ 1  1 -1 -1]
@@ -1218,7 +1218,7 @@ sage: operator = matrix([[ 4, -1, -0, -1, -0, -0, -0, -0, -0],
                         [-0, -0, -0, -0, -0, -1, -0, -1,  4]])
 sage: rep.is_equivariant_to(operator)
 True
-sage: P = G.base_change_matrix_new_off_filter_optimization(rep); P
+sage: P = G.base_equivariant_to_blocks(rep); P
 [ 2  0  0  2  0  2  0  0  0]
 [ 0  2  0  0  2  0  1  0  4]
 [ 2  0  0 -2  0  0  0  8  0]

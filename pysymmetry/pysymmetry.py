@@ -617,7 +617,7 @@ class FiniteGroup(PermutationGroup_generic):
         s = sum([matrix(left(i)(g.inverse()))[j][k] * matrix(right(g)) for g in self])  #Nota:
         return s
 
-    def base_change_matrix(self, right):
+    def base_to_irreducibles(self, right):
         r"""
         Return the basis change matrix associated to a decomposition of right into irreducibles representations.
 
@@ -639,7 +639,7 @@ class FiniteGroup(PermutationGroup_generic):
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
-            sage: A = G.base_change_matrix(rep); A
+            sage: A = G.base_to_irreducibles(rep); A
             [ 1  1  1  1]
             [ 1 -1  I -I]
             [ 1  1 -1 -1]
@@ -670,7 +670,7 @@ class FiniteGroup(PermutationGroup_generic):
             sage: matrices = [P.inverse()*matrix([[1,0,0],[0,1/2,-sqrt(3)/2],[0,sqrt(3)/2,1/2]])*P,P.inverse()*matrix([[1,0,0],[0,-1,0],[0,0,1]])*P];
             sage: rep = representation(generators, matrices, field=QQbar)
             sage: G = rep.domain()
-            sage: B = G.base_change_matrix(rep); 
+            sage: B = G.base_to_irreducibles(rep); 
             sage: view(B,latex=False) # This function creates a better visualization of the matrix
             [        12       -9/5      -54/5]
             [         0    3*I + 3 -18*I + 18]
@@ -773,7 +773,7 @@ class FiniteGroup(PermutationGroup_generic):
 
             sage: G = FiniteGroup(SymmetricGroup(3)) 
             sage: reg = G.regular_representation();
-            sage: C = G.base_change_matrix(reg); 
+            sage: C = G.base_to_irreducibles(reg); 
             sage: view(C, latex=False) # This Function creates a better visualization of the matrix
             [                   1                    1                    1                    0                    0                    3]
             [                   1                    1  1/2*I*sqrt(3) - 1/2                    0                    0 -3/2*I*sqrt(3) - 3/2]
@@ -837,7 +837,7 @@ class FiniteGroup(PermutationGroup_generic):
         return b
 
 
-    def base_change_matrix_new_off_filter_optimization(self, right, row=0):
+    def base_equivariant_to_blocks(self, right, row=0):
         r"""
         Return the basis change matrix associated to a symmetry adapted basis to an equivariant operator of right.
 
@@ -863,7 +863,7 @@ class FiniteGroup(PermutationGroup_generic):
             sage: A = matrix.circulant([1,2,3,4])
             sage: rep.is_equivariant_to(A)
             True
-            sage: P = G.base_change_matrix_new_off_filter_optimization(rep); P
+            sage: P = G.base_equivariant_to_blocks(rep); P
             [ 1  1  1  1]
             [ 1 -1  I -I]
             [ 1  1 -1 -1]
@@ -895,7 +895,7 @@ class FiniteGroup(PermutationGroup_generic):
                                     [-0, -0, -0, -0, -0, -1, -0, -1,  4]])
             sage: rep.is_equivariant_to(operator)
             True
-            sage: P = G.base_change_matrix_new_off_filter_optimization(rep); P
+            sage: P = G.base_equivariant_to_blocks(rep); P
             [ 2  0  0  2  0  2  0  0  0]
             [ 0  2  0  0  2  0  1  0  4]
             [ 2  0  0 -2  0  0  0  8  0]
@@ -1067,7 +1067,7 @@ class FiniteGroup(PermutationGroup_generic):
         return info
            	
 
-    #Nota: Falta unificar as saidas das bases    
+      
     def base_change_eigenvalue_reduction_new(self, right, block_prevision=False):
         r"""
         Return part of basis change matrix associated to a symmetry adapted basis to an equivariant operator of right.
@@ -1299,8 +1299,20 @@ class IsotypicBase(object):
         return len(self.base)
     
     def get_blocks(self,  matrix_equiv):
-        #Nota: botar um if para não usar paralelização se o usuário tiver apenas uma cpu
-        blocks = pmap(lambda b: get_block(b, matrix_equiv),  self.isotypic_components)#Nota: adptar get_blocks
+
+        r"""
+    Return the blocks corresponding to each isotypic component using the provided equivariant matrix.
+
+    INPUT:
+
+    - ``matrix_equiv`` -- matrix ; an equivariant operator.
+
+    OUTPUT: A list of blocks, where each block is obtained by applying `get_block` to an isotypic component and the given matrix equivariant.
+
+    EXAMPLES:"""    
+        
+                
+        blocks = pmap(lambda b: get_block(b, matrix_equiv),  self.isotypic_components)
         return blocks
     
     def list(self):
@@ -1317,7 +1329,7 @@ class IsotypicBase(object):
 
 
 
-def get_block(columm_base, matrix_equiv): # Nota: traduzir nome das variaveis
+def get_block(columm_base, matrix_equiv): 
     r"""
     Return the matricial representation of matrix_equiv when restricted to the subspace whose basis is columm_base.
 

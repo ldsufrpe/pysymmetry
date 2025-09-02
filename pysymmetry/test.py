@@ -175,14 +175,14 @@ class TestGroup(unittest.TestCase):
         
         self.assertTrue(rep.domain().is_isomorphic(DihedralGroup(6)))
 
-    def test_base_change_matrix_cyclic4(self):
+    def test_base_to_irreducibles_cyclic4(self):
         """
-        Test from the docstring of: base_change_matrix with CyclicPermutationGroup(4).
+        Test from the docstring of: base_to_irreducibles with CyclicPermutationGroup(4).
         This test verifies that the change of basis matrix correctly diagonalizes the representation.
         """
         G = FiniteGroup(CyclicPermutationGroup(4))
         rep = G.natural_representation()
-        C = G.base_change_matrix(rep)
+        C = G.base_to_irreducibles(rep)
         g = G.an_element()
         
         Dg = rep(g).matrix()
@@ -191,9 +191,9 @@ class TestGroup(unittest.TestCase):
         # Check if the resulting matrix is diagonal
         self.assertTrue(A_block.is_diagonal())
 
-    def test_base_change_matrix_new_off_filter_optimization_circulant(self):
+    def test_base_equivariant_to_blocks_circulant(self):
         """
-        Test from the docstring of: base_change_matrix_new_off_filter_optimization
+        Test from the docstring of: base_equivariant_to_blocks
         with a circulant matrix.
         """
         G = FiniteGroup(CyclicPermutationGroup(4))
@@ -201,7 +201,7 @@ class TestGroup(unittest.TestCase):
         A = matrix.circulant([1,2,3,4])
         self.assertTrue(rep.is_equivariant_to(A))
 
-        P = G.base_change_matrix_new_off_filter_optimization(rep)
+        P = G.base_equivariant_to_blocks(rep)
         A_block = P.inverse()*A*P
         
         # The expected result is a diagonal matrix
