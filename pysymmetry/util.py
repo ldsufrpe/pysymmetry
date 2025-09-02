@@ -1,7 +1,8 @@
 ############## util #######################
 __all__ = [ 
  'laplacian2d',
- 'laplacian1d',  
+ 'laplacian1d',
+'advection_diffusion_2d', 
   'to_csr',
   'to_csc',
   'view'
@@ -10,7 +11,7 @@ from sage.all import *
 from sage.libs.gap.element import GapElement
 from scipy.sparse import csr_matrix, coo_matrix, csc_matrix
 from scipy.linalg import block_diag
-
+from scipy.sparse import spdiags, kronsum, kron, identity
 
 
 
@@ -127,3 +128,38 @@ def laplacian1d(n, h=1):
 
 
 
+# Adicione esta função ao seu arquivo util.py ou no início do seu notebook
+from scipy.sparse import spdiags, kronsum, kron
+
+def advection_diffusion_2d(n, D=1.0, vx=1.0):
+    """
+    Gera a matriz para a equação de Advecção-Difusão 2D em uma grade n x n.
+
+    - D: Coeficiente de difusão (controla a parte simétrica).
+    - vx: Velocidade de advecção na direção x (controla a parte anti-simétrica).
+    """
+    # 1. Parte da Difusão (Seu Laplaciano Simétrico)
+    #    Vamos chamar sua função original para obter a matriz Laplaciana.
+    #    Multiplicamos por -1 porque sua função retorna -L.
+    L = -1 * laplacian2d(n) 
+
+    # 2. Parte da Advecção (Componente Anti-Simétrica)
+    #    Matriz para a primeira derivada d/dx usando diferenças centrais.
+    #    A matriz 1D tem 1 na superdiagonal e -1 na subdiagonal.
+    diagonals_x = [np.ones(n - 1), -np.ones(n - 1)]
+    offsets_x = [1, -1]
+    Dx_1D = spdiags(diagonals_x, offsets_x, n, n, format="csc")
+    
+    #    Identidade para a direção y
+    I_y = identity(n, format="csc")
+    
+    #    Usa o produto de Kronecker para criar o operador 2D d/dx
+    #    O fator 1/2 vem do esquema de diferenças centrais (h=1)
+    Ax = kron(I_y, Dx_1D) * 0.5
+
+    # 3. Combina as duas partes
+    #    A = D * L - vx * Ax
+    #    O sinal de menos em vx vem da equação (-v . grad(u))
+    A_ad = D * L - vx * Ax
+    
+    return A_ad
