@@ -81,7 +81,7 @@ class nIsotypicBase(object):
 def nfactorization(g, words, matrices):    
         
     #g = words[0].parent()(g)
-    H = libgap.FiniteGroup(words)
+    H = libgap.Group(words)
     ans = H.EpimorphismFromFreeGroup().PreImagesRepresentative(g)
     l1 = str(ans)
     l1 = avoid_inverse(g, words, l1)    
@@ -167,11 +167,34 @@ nGroup = ngroup
 
 
 
+import numpy as np
+
 def ninner_product(G, left, right):
+    """
+    Calcula o produto interno de caracteres usando a otimização
+    por classes de conjugação.
+    """
+    s = 0.0  # Usar float para a soma
     
-    l = np.array([left[g.inverse()].diagonal().sum()*right[g].diagonal().sum()  for g in G])
-    s = np.sum(l)    
-    return int((1./G.order())*s)
+    # Itera sobre as classes de conjugação do grupo G
+    for conj_class in G.conjugacy_classes():
+        # Pega um único representante para a classe
+        g = conj_class.representative()
+        
+        # Pega o tamanho da classe (o peso na soma)
+        class_size = len(conj_class)
+        
+        # Calcula os caracteres para o elemento representante
+        char_left_inv = left[g.inverse()].diagonal().sum()
+        char_right = right[g].diagonal().sum()
+        
+        # Adiciona o termo ponderado à soma
+        s += class_size * char_left_inv * char_right
+        
+    # Normaliza pelo tamanho do grupo e converte para inteiro
+    # A conversão direta com int() é suficiente, pois o resultado teórico é um inteiro.
+    return int((1.0 / G.order()) * s)
+
 
 def ndegree(G, rep):
     _, d = rep[G.an_element()].get_shape()       
