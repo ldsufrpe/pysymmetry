@@ -12,7 +12,7 @@ The core feature of this library is the **block diagonalization of equivariant o
 
 ### Key Features
 
-* **Group and Representation Theory Tools:** Provides an intuitive interface for working with permutation groups and their matrix representations.
+* **FiniteGroup and Representation Theory Tools:** Provides an intuitive interface for working with permutation groups and their matrix representations.
 * **Automatic Block Decomposition:** Implements algorithms to find the symmetry-adapted basis and automatically block-diagonalize equivariant matrices.
 * **Performance:** Accelerates calculations by breaking down large problems into smaller, more manageable ones. The library includes parallel processing capabilities to speed up computations.
 * **Built on SageMath:** Leverages the extensive mathematical capabilities of the SageMath ecosystem.
@@ -23,7 +23,7 @@ Let's find the eigenvalues of a 1D Laplacian operator, a common problem in physi
 
 ```python
 # 1. Import the library and create the operator
-from pysymmetry import Group, representation
+from pysymmetry import FiniteGroup, representation
 from pysymmetry.util import laplacian1d, get_block
 import numpy as np
 
@@ -38,7 +38,7 @@ def generators1d(n):
         string_reflexao_sigma += str((j, n - j + 1))
     return [string_reflexao_sigma]
 
-G = Group(generators1d(n))
+G = FiniteGroup(generators1d(n))
 
 # 3. Get the natural representation and the symmetry-adapted basis
 rep = G.natural_representation()

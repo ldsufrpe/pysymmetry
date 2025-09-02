@@ -25,14 +25,14 @@ PySymmetry is a Sage-based Python package for working with finite groups and the
 
 Import the package in your Sage worksheet or script:
 ```python
-from pysymmetry import Group, representation, get_block
+from pysymmetry import FiniteGroup, representation, get_block
 ```
 
-### Example: Regular Representation of a Cyclic Group
+### Example: Regular Representation of a Cyclic FiniteGroup
 
 ```python
 # Create a cyclic group of order 4
-G = Group(CyclicPermutationGroup(4))
+G = FiniteGroup(CyclicPermutationGroup(4))
 # Compute the regular representation
 reg = G.regular_representation()
 # Display the matrix of a random element
@@ -42,7 +42,7 @@ print(reg(g).matrix())
 
 ## API Overview
 
-- **Group**: Extends Sage’s permutation group notion to work with representations.
+- **FiniteGroup**: Extends Sage’s permutation group notion to work with representations.
 - **representation**: Constructs a representation from a list of generators and their corresponding matrices.
 - **MapRepresentation/Dg_Linear_Transformation**: Handle mapping and linear transformations associated with group elements.
 - **Projection and Base Change Methods**: Compute isotypic projections, change-of-basis matrices, and block structures for equivariant operators.
@@ -52,7 +52,7 @@ For detailed API documentation, refer to inline docstrings in the source code.
 ## References
 
 - Serre, J.-P. *Linear Representations of Finite Groups*. Springer, 1977.
-- Stiefel, E. and Fässler, A. *Group Theoretical Methods and Their Applications*. Springer, 2012.
+- Stiefel, E. and Fässler, A. *FiniteGroup Theoretical Methods and Their Applications*. Springer, 2012.
 
 ## License
 

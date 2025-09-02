@@ -1,6 +1,6 @@
 site_name: PySymmetry
 repo_url: https://github.com/ldsufrpe/pysymmetry 
-site_description: Documentação da biblioteca pysymmetry.
+site_description: Documentation pysymmetry framework.
 site_author: Leon Silva, Marcelo Pedro
 
 # Config do Theme and Plugins
