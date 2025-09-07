@@ -1,16 +1,55 @@
 site_name: PySymmetry
-repo_url: https://github.com/ldsufrpe/pysymmetry 
-site_description: Documentation pysymmetry framework.
+repo_url: https://github.com/ldsufrpe/pysymmetry
+site_description: Documentation for the pysymmetry framework.
 site_author: Leon Silva, Marcelo Pedro
 
-# Config do Theme and Plugins
 theme:
   name: material
-
+  custom_dir: overrides
+  palette:
+    scheme: slate
+    primary: teal
+  features:
+    - navigation.tabs
+    - navigation.top
 
 plugins:
   - search
   - mkdocstrings:
       handlers:
         python:
-          paths: [../] 
+          paths: [../]
+          options:
+            show_root_heading: true
+            show_source: false
+            members_order: source
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.arithmatex:
+      generic: true
+  - toc:
+      permalink: true
+  - tables
+  - footnotes
+
+extra_css:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css
+
+extra_javascript:
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js
+  - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
+  - javascripts/katex-init.js
+
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Tutorial: tutorial.md
+  - API Reference:
+    - Core: api_core.md
+    - Numerical (PDE): api_pde.md
+    - Utilities: api_util.md
+    - Parallel: api_parallel.md
+    - Contributing: contributing.md

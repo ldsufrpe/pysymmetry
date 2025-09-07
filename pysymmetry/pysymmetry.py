@@ -302,9 +302,33 @@ class FiniteGroup(PermutationGroup_generic):
         return N, irr_rep
 
     def natural_representation(self, field=QQbar):
-    	gens = self.gens()
-    	image = [g.matrix() for g in gens]
-    	return representation(gens, image, field)
+        r"""
+        Return the natural representation of the group.
+
+        The natural representation is defined by the permutation matrices
+        associated with each element of the group.
+
+        INPUT:
+
+        - ``field`` -- (default: `QQbar`); The field over which the representation is defined.
+
+        OUTPUT: A representation of the group.
+
+        EXAMPLES:
+
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
+            sage: nat_rep = G.natural_representation()
+            sage: g = G.an_element()
+            sage: nat_rep(g).matrix()
+            [0 1 0 0]
+            [0 0 1 0]
+            [0 0 0 1]
+            [1 0 0 0]
+        """
+        gens = self.gens()
+        image = [g.matrix() for g in gens]
+        return representation(gens, image, field)
+    	
 
     def isotypic_projection(self, right):
         r"""
