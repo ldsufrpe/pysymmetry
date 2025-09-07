@@ -1,10 +1,59 @@
-
 # Tutorials
 
 This page provides step-by-step tutorials for solving common problems using `PySymmetry`.
 
 ---
 
+
+## Example 1: A D4-Symmetric System
+
+This tutorial demonstrates how to block-diagonalize any matrix that is equivariant under a group's action. We will use the dihedral group $D_4$, which represents the symmetries of a square.
+
+### Background
+
+Imagine a system with 4 points arranged in a square. Any operator on this system that respects the square's symmetries (rotations and reflections) will have a matrix that commutes with the matrix representation of the $D_4$ group. Such a matrix is called "G-equivariant," and `PySymmetry` can simplify it.
+
+### Implementation with `PySymmetry`
+
+```python
+from pysymmetry import FiniteGroup, representation
+from sage.all import matrix, QQ
+
+# Step 1: Define the D4 group using its generators
+rotation = "(1,2,3,4)"
+reflection = "(1,3)"
+G = FiniteGroup([rotation, reflection])
+
+# Step 2: Define the Natural Permutation Representation
+phi = G.natural_representation()
+
+# Step 3: Define a G-Equivariant Matrix M
+a, b, c = 10, 2, 1
+M = matrix(QQ, [[a, b, c, b],
+                [b, a, b, c],
+                [c, b, a, b],
+                [b, c, b, a]])
+
+# Step 4: Compute the Symmetry-Adapted Basis
+P = G.base_change_matrix(phi)
+
+# Step 5: Perform the Block-Diagonalization
+M_block_diagonal = P.inverse() * M * P
+
+print("Original Matrix M:")
+show(M)
+print("\nSymmetry-Adapted Basis P:")
+show(P)
+print("\nBlock-Diagonal Matrix P^{-1}MP:")
+show(M_block_diagonal)
+```
+
+### Results
+
+The output shows that the original matrix `M` is transformed into a block-diagonal matrix containing two 1x1 blocks and one 2x2 block. This decomposition simplifies further analysis, such as finding eigenvalues, which can now be done on the smaller blocks independently.
+
+
+## Example 1: Molecular Vibrations in Chemistry (GF Method)
 
 This tutorial showcases how `PySymmetry` can be applied to a real-world problem in chemistry: analyzing the vibrational frequencies of a molecule using the GF method.
 
@@ -59,59 +108,9 @@ By transforming to the basis `beta`, the `FG` matrix is converted into a block-d
 
 ---
 
-## Example 1: A D4-Symmetric System
-
-This tutorial demonstrates how to block-diagonalize any matrix that is equivariant under a group's action. We will use the dihedral group $D_4$, which represents the symmetries of a square.
-
-### Background
-
-Imagine a system with 4 points arranged in a square. Any operator on this system that respects the square's symmetries (rotations and reflections) will have a matrix that commutes with the matrix representation of the $D_4$ group. Such a matrix is called "G-equivariant," and `PySymmetry` can simplify it.
-
-### Implementation with `PySymmetry`
-
-```python
-from pysymmetry import FiniteGroup, representation
-from sage.all import matrix, QQ
-
-# Step 1: Define the D4 group using its generators
-rotation = "(1,2,3,4)"
-reflection = "(1,3)"
-G = FiniteGroup([rotation, reflection])
-
-# Step 2: Define the Natural Permutation Representation
-phi = G.natural_representation()
-
-# Step 3: Define a G-Equivariant Matrix M
-a, b, c = 10, 2, 1
-M = matrix(QQ, [[a, b, c, b],
-                [b, a, b, c],
-                [c, b, a, b],
-                [b, c, b, a]])
-
-# Step 4: Compute the Symmetry-Adapted Basis
-P = G.base_change_matrix(phi)
-
-# Step 5: Perform the Block-Diagonalization
-M_block_diagonal = P.inverse() * M * P
-
-print("Original Matrix M:")
-show(M)
-print("\nSymmetry-Adapted Basis P:")
-show(P)
-print("\nBlock-Diagonal Matrix P^{-1}MP:")
-show(M_block_diagonal)
-```
-
-### Results
-
-The output shows that the original matrix `M` is transformed into a block-diagonal matrix containing two 1x1 blocks and one 2x2 block. This decomposition simplifies further analysis, such as finding eigenvalues, which can now be done on the smaller blocks independently.
 
 
-
-
-## Example 2: Molecular Vibrations in Chemistry (GF Method)
-
-## Exemplo 3. Exploiting Symmetry to Solve a Physics Problem
+## Exemplo 3: Exploiting Symmetry to Solve a Physics Problem
 
 This tutorial demonstrates a core use case for `PySymmetry`: simplifying a common eigenvalue problem by exploiting the underlying symmetry of a physical system. We will find the eigenvalues of a 1D Laplacian operator, a task frequently encountered in physics and engineering.
 
@@ -174,7 +173,7 @@ base_info, _ = G.base_change_eigenvalue_reduction_new(rep)
 
 With the symmetry-adapted basis, we can project the original large matrix `M` into smaller, independent blocks. The eigenvalues of these small blocks are the same as the eigenvalues of the original matrix, but are much easier to compute.
 
-Use get_block to project `M` onto the subspaces defined by our new basis:
+Use get_block to project M onto the subspaces defined by our new basis:
 ```python
 blocks = [get_block(info[0], M) for info in base_info]
 ```
@@ -187,3 +186,6 @@ eigenvalues_from_blocks = sorted(np.concatenate(
 
 print(f"Successfully found {len(eigenvalues_from_blocks)} eigenvalues from the decomposed blocks.")
 ```
+
+This completes the process. The `eigenvalues_from_blocks` list contains all the eigenvalues of the full `M` matrix. By using symmetry, we avoided direct computation on the large matrix and instead solved the problem on smaller, simpler ones.
+
