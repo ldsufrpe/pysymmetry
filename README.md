@@ -233,6 +233,56 @@ This will output the 4x4 permutation matrix corresponding to the cyclic permutat
 
 For a complete API reference and further examples, please visit the **[Official Documentation](https://ldsufrpe.github.io/pysymmetry/)**.
 
+## How to Run Tests
+
+This project includes a consolidated test suite located at `pysymmetry/test.py`. The tests rely on SageMath, so they must be executed within the SageMath environment.
+
+Prerequisites
+- SageMath installed and available on your PATH (see Installation above).
+- Python packages inside Sage (only needed if you choose pytest):
+  - pytest (optional, for running tests with pytest)
+  - pytest-html (optional, for generating an HTML report)
+  - NumPy (usually included with Sage; install only if missing)
+
+Install optional test dependencies inside Sage
+- Install using Sage's pip so packages are bound to the Sage environment:
+  ```bash
+  sage -pip install pytest pytest-html numpy
+  ```
+  Note: NumPy typically ships with Sage, but the command above ensures it is present.
+
+Run the tests
+You can run the tests using either Python's built-in unittest (simplest) or pytest.
+
+Option A — unittest (no extra packages required)
+1. Navigate to the directory containing the test file:
+   ```bash
+   cd pysymmetry/pysymmetry
+   ```
+2. Run the test suite with verbose output using Sage:
+   ```bash
+   sage test.py -v
+   ```
+   Alternatively, you can use Sage's Python explicitly:
+   ```bash
+   sage -python -m unittest -v test.py
+   ```
+
+Option B — pytest (optional, more features)
+1. From the repository root, run:
+   ```bash
+   sage -python -m pytest -v pysymmetry/test.py
+   ```
+2. Generate an HTML report (optional):
+   ```bash
+   sage -python -m pytest --html=report.html -v pysymmetry/test.py
+   ```
+
+Troubleshooting
+- Command not found: If `sage` is not recognized, ensure SageMath is installed and added to your PATH.
+- Import errors: Make sure you are running tests via Sage (e.g., `sage ...`). Regular system Python will not provide `sage.all`.
+- NumPy missing: Install it inside Sage with `sage -pip install numpy`.
+
 ## References
 
   - Serre, J.-P. *Linear Representations of Finite Groups*. Springer, 1977.
