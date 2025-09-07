@@ -53,7 +53,7 @@ show(M_block_diagonal)
 The output shows that the original matrix `M` is transformed into a block-diagonal matrix containing two 1x1 blocks and one 2x2 block. This decomposition simplifies further analysis, such as finding eigenvalues, which can now be done on the smaller blocks independently.
 
 
-## Example 1: Molecular Vibrations in Chemistry (GF Method)
+## Example 2: Molecular Vibrations in Chemistry (GF Method)
 
 This tutorial showcases how `PySymmetry` can be applied to a real-world problem in chemistry: analyzing the vibrational frequencies of a molecule using the GF method.
 
@@ -105,9 +105,6 @@ show(FG_block_diagonal)
 ### Results
 
 By transforming to the basis `beta`, the `FG` matrix is converted into a block-diagonal form, separating the problem into a 2x2 block and a 1x1 block. This simplifies the calculation of its eigenvalues, which correspond to the molecule's vibrational frequencies.
-
----
-
 
 
 ## Exemplo 3: Exploiting Symmetry to Solve a Physics Problem
