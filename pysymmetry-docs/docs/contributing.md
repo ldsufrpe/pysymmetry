@@ -13,7 +13,7 @@ To contribute code, you'll need to set up a local development environment.
 1.  **Fork the repository** on GitHub.
 2.  **Clone your fork** locally:
     ```bash
-    git clone [https://github.com/YOUR_USERNAME/pysymmetry.git](https://github.com/YOUR_USERNAME/pysymmetry.git)
+    git clone https://github.com/ldsufrpe/pysymmetry.git
     cd pysymmetry
     ```
 3.  **Set up SageMath**: Ensure you have a working SageMath environment as described in the installation guide.

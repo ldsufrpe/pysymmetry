@@ -2,7 +2,7 @@
 
 Optimized functions and classes for numerical calculations and solving PDEs.
 
-::: pysymmetry.pde.ngroup
+::: pysymmetry.pde.nfinitegroup
     options:
       show_source: false
 
