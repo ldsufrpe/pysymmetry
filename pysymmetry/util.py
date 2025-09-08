@@ -144,3 +144,26 @@ def advection_diffusion_2d(n, D=1.0, vx=1.0):
     A_ad = D * L - vx * Ax
     
     return A_ad
+
+def schrodinger_complex_potential_2d(n, V0=1.0, h=1.0):
+    """
+    Gera a matriz para a equação de Schrödinger com potencial complexo D4-equivariante.
+    O Hamiltoniano é H = -∇² + i*V(x,y), com V(x,y) = V0*(x² + y²).
+    Esta matriz é G-equivariante (para D4) e não-hermitiana.
+
+    - n: Tamanho da grade (n x n).
+    - V0: Amplitude do potencial.
+    - h: Espaçamento da grade.
+    """
+    L = laplacian2d(n) 
+
+    coords = np.linspace(-(n-1)*h/2, (n-1)*h/2, n)
+    x_coords = np.tile(coords, n)
+    y_coords = np.repeat(coords, n)
+       
+    V_values = V0 * (x_coords**2 + y_coords**2)   
+    
+    V_matrix = diags(1j * V_values, format="csc")   
+    H = L + V_matrix
+    
+    return H
