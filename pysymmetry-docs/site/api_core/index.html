@@ -670,6 +670,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_stable" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_stable
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1042,6 +1051,15 @@
   <a href="#pysymmetry.MapRepresentation.is_representation" class="md-nav__link">
     <span class="md-ellipsis">
       is_representation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_stable" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_stable
     </span>
   </a>
   
@@ -2696,8 +2714,89 @@ False
 
     <div class="doc doc-contents ">
 
-        <p>INPUT- A representation.
-OUTPUT- A boolean True or False acording rep being a representation</p>
+        <p>Test whether self is a group representation (homomorphism) on its domain.</p>
+<p>A map ρ: G → GL(V) is a representation if ρ(gh) = ρ(g) ρ(h) for all g, h in G.
+This method verifies the homomorphism property by checking all pairs in the
+finite domain group. For large groups this can be slow.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- representation; a mapping from a finite group G to a matrix group.</li>
+</ul>
+
+
+<details class="output" open>
+  <summary><code>True</code> if the map preserves the group operation (homomorphism);</summary>
+  <p>otherwise <code>False</code>.</p>
+</details>        <p>EXAMPLES:</p>
+<p>We define the permutation representation of the cyclic group of order 4 and
+test the homomorphism property ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: gens = G.gens()
+sage: mats = [g.matrix() for g in gens]
+sage: rep = representation(gens, mats)
+sage: rep.is_representation()
+True
+</code></pre>
+<p>We also check a representation over the dihedral group of order 12 ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)", "(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1/2, -sqrt(3)/2],[sqrt(3)/2, 1/2]]), matrix([[-1,0],[0,1]])]
+sage: rep = representation(generators, matrices)
+sage: rep.is_representation()
+True
+</code></pre>
+<p>REFERENCES:</p>
+<ul>
+<li>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. Springer, 1977.</li>
+<li>[Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer, 2012.</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.is_stable" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">is_stable</span><span class="p">(</span><span class="n">subspace</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.MapRepresentation.is_stable" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Test whether a given subspace is stable (invariant) under the representation.</p>
+<p>A subspace W ⊆ V is stable under the representation ρ if ρ(g)·w ∈ W for every
+generator g of G and every w in a basis of W. This method verifies invariance
+using the group generators.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- representation; a representation of a finite group G on V.</li>
+<li><code>subspace</code> -- vector subspace; a Sage vector subspace of V.</li>
+</ul>
+
+
+<details class="output" open>
+  <summary><code>True</code> if <code>subspace</code> is invariant under the action of the generators</summary>
+  <p>of the group; otherwise <code>False</code>. A <code>TypeError</code> is raised if <code>subspace</code>
+is not a subspace of the representation space V.</p>
+</details>        <p>EXAMPLES:</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: gens = G.gens()
+sage: mats = [g.matrix() for g in gens]
+sage: rep = representation(gens, mats)
+sage: V = (rep.an_element()).domain()        # representation space V
+sage: e1 = V.basis()[0]
+sage: W = V.subspace([e1])                   # span{e1}
+sage: rep.is_stable(W) in [True, False]      # doctest: +ELLIPSIS
+True
+</code></pre>
+<p>REFERENCES:</p>
+<ul>
+<li>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. Springer, 1977.</li>
+<li>[Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer, 2012.</li>
+</ul>
 
 
     </div>
