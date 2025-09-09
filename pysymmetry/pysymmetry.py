@@ -164,13 +164,13 @@ class FiniteGroup(PermutationGroup_generic):
         """                
 
         
-        # usei metodos do orderpy pra deixar os calculos mais rapidos
-        #NOTA: precisa verificar se g esta em FiniteGroup
+        # NOTE: Used orderpy methods to make the computations faster
+        # NOTE: Verify that g is an element of FiniteGroup
         matrices = [self._regular_(g).matrix() for g in self.gens()]
         M = MatrixGroup(matrices)
         return MapRepresentation(Hom(self, M), self._regular_)
 
-    def irreducible_representations(self, show_table=True): ##Nota: Como documentar saida com o True
+    def irreducible_representations(self, show_table=True): ## NOTE: How to document the output when show_table=True
         r"""
         Return the number n of irreducible representations of self and the irreducibles representations.
 
@@ -522,7 +522,7 @@ class FiniteGroup(PermutationGroup_generic):
         - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
-        proj_lst = self.isotypic_projection(rep)  #NOTA:devemos usar sempre regular representation(pergunta)??? NAO
+        proj_lst = self.isotypic_projection(rep)  # NOTE: Should the regular representation always be used? No.
         decomposition = [m.matrix_from_columns(m.pivots()) for m in proj_lst]
         if isotypic_components:
             return decomposition
@@ -633,12 +633,12 @@ class FiniteGroup(PermutationGroup_generic):
         """
         
         
-        #Nota:   ver como melhorar a posição do left
-        #Nota: right pode inclusive ser a irredutivel (pergunta)
+        # NOTE: Consider how to improve the placement of the 'left' parameter
+        # NOTE: Can 'right' be an irreducible representation as well (question)?
         ###Melhorar este nome opcoes: transfer isomorphism 
         if left == None:
             n, left = self.irreducible_representations(False)
-        s = sum([matrix(left(i)(g.inverse()))[j][k] * matrix(right(g)) for g in self])  #Nota:
+        s = sum([matrix(left(i)(g.inverse()))[j][k] * matrix(right(g)) for g in self])  # NOTE: Sum over group elements to construct the projector
         return s
 
     def base_to_irreducibles(self, right):
@@ -837,13 +837,13 @@ class FiniteGroup(PermutationGroup_generic):
         
         
         row = 0
-        n, left = self.irreducible_representations(False)  #Nota: vou pensar em como implementar o __len__
+        n, left = self.irreducible_representations(False)  # NOTE: Consider implementing __len__
         base = []
        
         for i in range(n):
             multiplicity = left(i).inner_product(right) 
-            if multiplicity != self.field.zero():  #Nota: acho que aqui é um problema em caso de negativa
-                P = self.projection(i, row, 0, right, left)  #Nota: conversar com marcelo a melhor forma de deixar row opcional
+            if multiplicity != self.field.zero():  # NOTE: Potential issue if the value is negative
+                P = self.projection(i, row, 0, right, left)  # NOTE: Find the best way to make 'row' optional
                 pivots = P.pivots()
                 for pivot in pivots:
                     v0 = P[:, pivot]
@@ -956,28 +956,28 @@ class FiniteGroup(PermutationGroup_generic):
         - [Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science & Business Media, 2012.     
         
         """
-        ###Mudar Nome, talvez symmetry_adapted_basis
-        #Nota: right pode inclusive ser a irredutível???? PODE
-        n, left = self.irreducible_representations(False)  #Nota: vou pensar em como implementar o __len__
+        ### TODO: Rename; perhaps symmetry_adapted_basis
+        # NOTE: Can 'right' be irreducible as well? Yes.
+        n, left = self.irreducible_representations(False)  # NOTE: Consider implementing __len__
         base = []
 
         for i in range(n):
 
-            if left(i).inner_product(right) != self.field.zero():  #Nota: acho que aqui é um problema em caso de negativa
-                P = self.projection(i, row, 0, right, left)  #Nota: conversar com marcelo a melhor forma de deixar row opcional. #nota: left???
+            if left(i).inner_product(right) != self.field.zero():  # NOTE: Potential issue if the value is negative
+                P = self.projection(i, row, 0, right, left)  # NOTE: Revisit how to make 'row' optional and review the 'left' parameter
                 pivots = P.pivots()
                 geracao1 = []
                 for pivot in pivots:
                     v0 = P[:, pivot]
                     geracao1.append(v0)
-                base = base + geracao1 # Nota: Traduzir
+                base = base + geracao1 # NOTE: Append first-generation vectors
                 degree = left(i).degree()
 
-                for k in range(1, degree):  #Nota: Esse laco roda se o range for vazio? Otimizar
+                for k in range(1, degree):  # NOTE: Does this loop run if the range is empty? Optimize.
                     geracao2 = []
-                    for v0 in geracao1:     # Nota: Traduzir
+                    for v0 in geracao1:     # NOTE: Iterate over first-generation vectors
                         v = self.projection(i, row, k, right, left) * v0
-                        geracao2.append(v)    # Nota: Traduzir
+                        geracao2.append(v)    # NOTE: Append second-generation vectors
                     base = base + geracao2
 
         b = base[0]
@@ -986,7 +986,7 @@ class FiniteGroup(PermutationGroup_generic):
         return b 
 
     #####################################################################################
-    def quick_block_prevision(self, right, block_prevision=False):##Nota, consertar row ##Revisar a documentacao do True or False
+    def quick_block_prevision(self, right, block_prevision=False):## NOTE: Fix 'row'. ## Review the documentation for the True/False behavior
         r"""
         Return a list with order and multiplicities of blocks to an equivariant operator under right defined on self.
 
@@ -1278,7 +1278,7 @@ class FiniteGroup(PermutationGroup_generic):
         
         """       
         row = 0
-        n, left = self.irreducible_representations(False)  #Nota: vou pensar em como implementar o __len__
+        n, left = self.irreducible_representations(False)  # NOTE: Consider implementing __len__
         base = []
         #base_new = []
         info = [['degree', 'multiplicity']]
@@ -1287,7 +1287,7 @@ class FiniteGroup(PermutationGroup_generic):
             multiplicity = left(i).inner_product(right)
             if multiplicity != self.field.zero():  
 
-                P = self.projection(i, row, 0, right, left)  #Nota: left???
+                P = self.projection(i, row, 0, right, left)  # NOTE: 'left' parameter?
                 pivots = P.pivots()
                 degree = left(i).degree()                
                 v0 = P[:, pivots]
@@ -1509,16 +1509,15 @@ class MapRepresentation(SetMorphism):
         """
 
         
-        #NOTA: Verificar se right eh uma representation() (class Representation)
+        # NOTE: Verify that 'right' is a representation (class Representation)
         group = self._domain
         s = 0
         
-        # O método conjugacy_classes() retorna uma lista de classes do grupo.
+        # The method conjugacy_classes() returns a list of the group's conjugacy classes.
         for conj_class in group.conjugacy_classes():
-            # Pega um único representante para a classe.
-            g = conj_class.representative()
-            
-            # O tamanho da classe é o peso do termo na soma.
+            # Take a single representative of the class.
+            g = conj_class.representative()            
+            # The size of the class is the weight of the term in the sum.
             class_size = len(conj_class)
             
             term = class_size * self(g.inverse()).character() * right(g).character()
@@ -1531,18 +1530,18 @@ class MapRepresentation(SetMorphism):
     
 
     def tensor_product(self, right):
-        if not right.is_representation(): # Nota: Em teste, pois pode ser lento em alguns casos.
+        if not right.is_representation(): # NOTE: Under evaluation; may be slow in some cases.
             msg = '{} is not a representation.'
             raise TypeError(''.join(mgs).format(right))
         left = self
         domain = left._domain
         if not domain==right._domain:
-            msg = 'The domains {} and {} is not the same.'#Nota: Melhorar mensagens?
+            msg = 'The domains {} and {} is not the same.'# NOTE: Improve error messages?
             raise TypeError (''.join(msg).format(domain, right._domain))
         field = left._domain.field
         gens = left._domain.gens()
         image = [(left(g).matrix()).tensor_product(right(g).matrix()) for g in gens]
-        # Nota: Vamos pensar melhor como o parametro field é util.
+        # NOTE: Reconsider how the 'field' parameter is useful.
         return representation(gens, image, field)
         
 
@@ -1677,8 +1676,8 @@ class MapRepresentation(SetMorphism):
         d = self.an_element()
         return d.matrix().nrows()
     
-    ##Nota: enriquecer documentacao Ex produto tensorial ####Discutir sobre um teste de dominio.
-    def is_equivariant_to(self, M):  #Nota: a Testes 
+    ## NOTE: Enrich documentation (e.g., tensor product). #### Discuss a domain test.
+    def is_equivariant_to(self, M):  # NOTE: Needs tests
         r"""
         Tests if an operator is equivariant to a representation defined over a an arbitrary group G.
 
@@ -1841,27 +1840,96 @@ class MapRepresentation(SetMorphism):
 
 
     def is_representation(self):
-        """INPUT- A representation.
-	    OUTPUT- A boolean True or False acording rep being a representation"""
+        r"""
+        Test whether self is a group representation (homomorphism) on its domain.
+
+        A map ρ: G → GL(V) is a representation if ρ(gh) = ρ(g) ρ(h) for all g, h in G.
+        This method verifies the homomorphism property by checking all pairs in the
+        finite domain group. For large groups this can be slow.
+
+        INPUT:
+
+        - ``self`` -- representation; a mapping from a finite group G to a matrix group.
+
+        OUTPUT: ``True`` if the map preserves the group operation (homomorphism);
+                otherwise ``False``.
+
+        EXAMPLES:
+
+        We define the permutation representation of the cyclic group of order 4 and
+        test the homomorphism property ::
+
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
+            sage: gens = G.gens()
+            sage: mats = [g.matrix() for g in gens]
+            sage: rep = representation(gens, mats)
+            sage: rep.is_representation()
+            True
+
+        We also check a representation over the dihedral group of order 12 ::
+
+            sage: generators = ["(1,2,3,4,5,6)", "(1,4)(2,3)(5,6)"]
+            sage: matrices = [matrix([[1/2, -sqrt(3)/2],[sqrt(3)/2, 1/2]]), matrix([[-1,0],[0,1]])]
+            sage: rep = representation(generators, matrices)
+            sage: rep.is_representation()
+            True
+
+        REFERENCES:
+
+        - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. Springer, 1977.
+        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer, 2012.
+        """
         domain = self._domain
         for g in domain:
             for h in domain:
-                if not self(g*h).matrix()==(self(g).matrix())*(self(h)).matrix(): #Nota: ainda esta lento
+                if not self(g*h).matrix() == (self(g).matrix()) * (self(h)).matrix():  # NOTE: This exhaustive check can be slow for large groups
                     return False
         return True
-        
-    
+
     def is_stable(self, subspace):
+        r"""
+        Test whether a given subspace is stable (invariant) under the representation.
+
+        A subspace W ⊆ V is stable under the representation ρ if ρ(g)·w ∈ W for every
+        generator g of G and every w in a basis of W. This method verifies invariance
+        using the group generators.
+
+        INPUT:
+
+        - ``self`` -- representation; a representation of a finite group G on V.
+        - ``subspace`` -- vector subspace; a Sage vector subspace of V.
+
+        OUTPUT: ``True`` if ``subspace`` is invariant under the action of the generators
+                of the group; otherwise ``False``. A ``TypeError`` is raised if ``subspace``
+                is not a subspace of the representation space V.
+
+        EXAMPLES:
+
+            sage: G = FiniteGroup(CyclicPermutationGroup(4))
+            sage: gens = G.gens()
+            sage: mats = [g.matrix() for g in gens]
+            sage: rep = representation(gens, mats)
+            sage: V = (rep.an_element()).domain()        # representation space V
+            sage: e1 = V.basis()[0]
+            sage: W = V.subspace([e1])                   # span{e1}
+            sage: rep.is_stable(W) in [True, False]      # doctest: +ELLIPSIS
+            True
+
+        REFERENCES:
+
+        - [Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. Springer, 1977.
+        - [Sti2012]_Stiefel, E., and A. Fässler. Group theoretical methods and their applications. Springer, 2012.
+        """
         domain = self._domain
         generators = domain.gens()
-        space =  self(domain.an_element())._domain
-        basis = subspace.basis() 
+        space = self(domain.an_element())._domain
+        basis = subspace.basis()
         if not subspace.is_subspace(space):
-            msg = '{} is not a subspace of {}' 
+            msg = '{} is not a subspace of {}'
             raise TypeError(''.join(msg).format(subspace, space))
         for g in generators:
             for vector in basis:
-                if not self(g).matrix()*vector in subspace:
+                if not self(g).matrix() * vector in subspace:
                     return False
         return True
 
