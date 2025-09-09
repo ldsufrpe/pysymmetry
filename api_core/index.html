@@ -1,0 +1,3151 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation for the pysymmetry framework.">
+      
+      
+        <meta name="author" content="Leon Silva, Marcelo Pedro">
+      
+      
+      
+        <link rel="prev" href="../tutorial/">
+      
+      
+        <link rel="next" href="../api_pde/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.16">
+    
+    
+      
+        <title>Core - PySymmetry</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.7e37652d.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#core-api-pysymmetry" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PySymmetry" class="md-header__button md-logo" aria-label="PySymmetry" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PySymmetry
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Core
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ldsufrpe/pysymmetry" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../installation/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Installation
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tutorial/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Tutorial
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PySymmetry" class="md-nav__button md-logo" aria-label="PySymmetry" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    PySymmetry
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ldsufrpe/pysymmetry" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.0.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Installation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tutorial/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tutorial
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  
+  <span class="md-ellipsis">
+    API Reference
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            API Reference
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Core
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Core
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      FiniteGroup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FiniteGroup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.regular_representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      regular_representation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.irreducible_representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      irreducible_representations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.natural_representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      natural_representation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.isotypic_projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      isotypic_projection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.isotypic_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      isotypic_base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      projection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.base_to_irreducibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_to_irreducibles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.base_equivariant_to_blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_equivariant_to_blocks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.quick_block_prevision" class="md-nav__link">
+    <span class="md-ellipsis">
+      quick_block_prevision
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.base_change_eigenvalue_reduction_new" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_change_eigenvalue_reduction_new
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      MapRepresentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MapRepresentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.inner_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      inner_product
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.direct_sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      direct_sum
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.an_element" class="md-nav__link">
+    <span class="md-ellipsis">
+      an_element
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.degree" class="md-nav__link">
+    <span class="md-ellipsis">
+      degree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_equivariant_to" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_equivariant_to
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_unitary" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_unitary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_irreducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_irreducible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_representation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.Dg_Linear_Transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dg_Linear_Transformation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dg_Linear_Transformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.Dg_Linear_Transformation.character" class="md-nav__link">
+    <span class="md-ellipsis">
+      character
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-module-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Module Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      representation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.get_block" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_block
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_pde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Numerical (PDE)
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_util/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Utilities
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api_parallel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Parallel
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contributing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Contributing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup" class="md-nav__link">
+    <span class="md-ellipsis">
+      FiniteGroup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="FiniteGroup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.regular_representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      regular_representation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.irreducible_representations" class="md-nav__link">
+    <span class="md-ellipsis">
+      irreducible_representations
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.natural_representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      natural_representation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.isotypic_projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      isotypic_projection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.isotypic_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      isotypic_base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.projection" class="md-nav__link">
+    <span class="md-ellipsis">
+      projection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.base_to_irreducibles" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_to_irreducibles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.base_equivariant_to_blocks" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_equivariant_to_blocks
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.quick_block_prevision" class="md-nav__link">
+    <span class="md-ellipsis">
+      quick_block_prevision
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.FiniteGroup.base_change_eigenvalue_reduction_new" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_change_eigenvalue_reduction_new
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      MapRepresentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MapRepresentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.inner_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      inner_product
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.direct_sum" class="md-nav__link">
+    <span class="md-ellipsis">
+      direct_sum
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.an_element" class="md-nav__link">
+    <span class="md-ellipsis">
+      an_element
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.degree" class="md-nav__link">
+    <span class="md-ellipsis">
+      degree
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_equivariant_to" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_equivariant_to
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_unitary" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_unitary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_irreducible" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_irreducible
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.MapRepresentation.is_representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_representation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.Dg_Linear_Transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dg_Linear_Transformation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dg_Linear_Transformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pysymmetry.Dg_Linear_Transformation.character" class="md-nav__link">
+    <span class="md-ellipsis">
+      character
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#core-module-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Core Module Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      representation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pysymmetry.get_block" class="md-nav__link">
+    <span class="md-ellipsis">
+      get_block
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="core-api-pysymmetry">Core API: pysymmetry<a class="headerlink" href="#core-api-pysymmetry" title="Permanent link">&para;</a></h1>
+<p>This module contains the central classes and functions for group theory and representations.</p>
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="pysymmetry.FiniteGroup" class="doc doc-heading">
+            <code>pysymmetry.FiniteGroup</code>
+
+
+<a href="#pysymmetry.FiniteGroup" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="sage.groups.perm_gps.permgroup.PermutationGroup_generic">PermutationGroup_generic</span></code></p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.regular_representation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">regular_representation</span><span class="p">()</span></code>
+
+<a href="#pysymmetry.FiniteGroup.regular_representation" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the regular representation defined over the group.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+</ul>
+<p>OUTPUT: The regular representation defined over the FiniteGroup given by self. </p>
+<p>EXAMPLES:</p>
+<p>We define the regular representation over the cyclic group of 4 elements ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4)) 
+sage: reg = G.regular_representation()
+sage: [reg(g) for g in G]
+[Linear transformation associated with element g=(), represented by the non-singular matrix:
+ [1 0 0 0]
+ [0 1 0 0]
+ [0 0 1 0]
+ [0 0 0 1]
+ Representation space: Vector space of dimension 4 over Algebraic Field
+ ,
+ Linear transformation associated with element g=(1,2,3,4), represented by the non-singular matrix:
+ [0 0 0 1]
+ [1 0 0 0]
+ [0 1 0 0]
+ [0 0 1 0]
+ Representation space: Vector space of dimension 4 over Algebraic Field
+ ,
+ Linear transformation associated with element g=(1,3)(2,4), represented by the non-singular matrix:
+ [0 0 1 0]
+ [0 0 0 1]
+ [1 0 0 0]
+ [0 1 0 0]
+ Representation space: Vector space of dimension 4 over Algebraic Field
+ ,
+ Linear transformation associated with element g=(1,4,3,2), represented by the non-singular matrix:
+ [0 1 0 0]
+ [0 0 1 0]
+ [0 0 0 1]
+ [1 0 0 0]
+ Representation space: Vector space of dimension 4 over Algebraic Field
+ ]
+</code></pre>
+<p>We define the group of symmetries of regular hexagon and the regular representation over this group ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: G = FiniteGroup(generators)
+sage: reg = G.regular_representation()
+sage: g = G.an_element()
+sage: reg(g)
+Linear transformation associated with element g=(1,3)(4,6), represented by the non-singular matrix:
+[0 0 0 0 0 0 0 0 1 0 0 0]
+[0 0 0 0 0 0 1 0 0 0 0 0]
+[0 0 0 0 0 0 0 1 0 0 0 0]
+[0 0 0 0 0 0 0 0 0 0 0 1]
+[0 0 0 0 0 0 0 0 0 1 0 0]
+[0 0 0 0 0 0 0 0 0 0 1 0]
+[0 1 0 0 0 0 0 0 0 0 0 0]
+[0 0 1 0 0 0 0 0 0 0 0 0]
+[1 0 0 0 0 0 0 0 0 0 0 0]
+[0 0 0 0 1 0 0 0 0 0 0 0]
+[0 0 0 0 0 1 0 0 0 0 0 0]
+[0 0 0 1 0 0 0 0 0 0 0 0]
+Representation space: Vector space of dimension 12 over Algebraic Field
+</code></pre>
+<p>We define the regular representation over the symmetric group of 4 simbols ::</p>
+<pre><code>sage: H = SymmetricGroup(4)
+sage: G = FiniteGroup(H);
+sage: reg = G.regular_representation();
+sage: g = G.an_element()
+sage: reg(g)
+Linear transformation associated with element g=(1,3,4), represented by the non-singular matrix:
+24 x 24 dense matrix over Algebraic Field
+Representation space: Vector space of dimension 24 over Algebraic Field
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.irreducible_representations" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">irreducible_representations</span><span class="p">(</span><span class="n">show_table</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.irreducible_representations" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the number n of irreducible representations of self and the irreducibles representations.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+<li><code>show_table</code> -- a boolean (default: <code>True</code>) ; shows a table of each irreducible representation applied at the generators of self.</li>
+</ul>
+
+
+<details class="output" open>
+  <summary>If show_table=True; return number of irreducible representions and irreducible representions themselves.</summary>
+  <p>If show_table=False; return the irreducible representions themselves. </p>
+</details>        <p>EXAMPLES:</p>
+<p>We define the symmetric group of 4 simbols and calculate its irreducible representations ::</p>
+<pre><code>sage: G = FiniteGroup(SymmetricGroup(4));
+sage: n, irr = G.irreducible_representations(False) #Irreducible representations
+sage: n
+5
+sage: irr(0)
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2), (1,2,3,4)] 
+ To: Matrix group over Integer Ring with 2 generators ([1], [1]).
+
+sage: irr(4)
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2), (1,2,3,4)] 
+ To: Matrix group over Integer Ring with 2 generators (
+[ 0  1  0]  [ 0  0 -1]
+[ 1  0  0]  [ 0  1  0]
+[ 0  0 -1], [ 1  0  0]
+).
+</code></pre>
+<p>We define the representation by permutation on the cyclic group calculate its irreducible representations ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(6))
+sage: irr = G.irreducible_representations(True) #Irreducible representations
+||||||SAIDA A SER PENSADA|||||||
+</code></pre>
+<p>We calculate the irreducible representations of the group of symmetries of a regular tetrahedron ::</p>
+<pre><code>sage: G = FiniteGroup(AlternatingGroup(4));
+sage: irr = G.irreducible_representations(True) #Irreducible representations
+sage: for j in range(n):
+ ||||||SAIDA A SER PENSADA|||||||
+</code></pre>
+<p>We define the group of symmetries of regular hexagon and calculate its irreducible representations  ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: G = FiniteGroup(PermutationGroup(generators))
+sage: n,irr = G.irreducible_representations(False) #Irreducible representations
+sage: for j in range(n):
+        print(irr(j))
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+ To: Matrix group over Integer Ring with 2 generators ([1], [1]).
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+ To: Matrix group over Integer Ring with 2 generators ([1], [-1]).
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+ To: Matrix group over Integer Ring with 2 generators ([-1], [-1]).
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+ To: Matrix group over Integer Ring with 2 generators ([-1], [1]).
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+ To: Matrix group over Universal Cyclotomic Field with 2 generators (
+[E(3)^2      0]  [0 1]
+[     0   E(3)], [1 0]
+).
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2,3,4,5,6), (1,4)(2,3)(5,6)] 
+ To: Matrix group over Universal Cyclotomic Field with 2 generators (
+[-E(3)^2       0]  [ 0 -1]
+[      0   -E(3)], [-1  0]
+).
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.natural_representation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">natural_representation</span><span class="p">(</span><span class="n">field</span><span class="o">=</span><span class="n">QQbar</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.natural_representation" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the natural representation of the group.</p>
+<p>The natural representation is defined by the permutation matrices
+associated with each element of the group.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>field</code> -- (default: <code>QQbar</code>); The field over which the representation is defined.</li>
+</ul>
+<p>OUTPUT: A representation of the group.</p>
+<p>EXAMPLES:</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: nat_rep = G.natural_representation()
+sage: g = G.an_element()
+sage: nat_rep(g).matrix()
+[0 1 0 0]
+[0 0 1 0]
+[0 0 0 1]
+[1 0 0 0]
+</code></pre>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.isotypic_projection" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">isotypic_projection</span><span class="p">(</span><span class="n">right</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.isotypic_projection" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return a list containing the matrices associated to projections operators over the isotypic components(or conglomerates) of right.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+<li><code>right</code> -- representation ; a representation defined over the same group as self.</li>
+</ul>
+<p>OUTPUT: A list of matrices representing the projections operators over the isotypics subespaces of right.</p>
+<p>EXAMPLES:</p>
+<p>We define the symmetric group of 3 simbols and the isotypic projections associated to the regular representation of this group ::</p>
+<pre><code>sage: G = FiniteGroup(SymmetricGroup(3));
+sage: reg = G.regular_representation();
+sage: G.isotypic_projection(reg)
+ [
+ [1 1 1 1 1 1]  [ 1  1  1 -1 -1 -1]  [ 2 -1 -1  0  0  0]
+ [1 1 1 1 1 1]  [ 1  1  1 -1 -1 -1]  [-1  2 -1  0  0  0]
+ [1 1 1 1 1 1]  [ 1  1  1 -1 -1 -1]  [-1 -1  2  0  0  0]
+ [1 1 1 1 1 1]  [-1 -1 -1  1  1  1]  [ 0  0  0  2 -1 -1]
+ [1 1 1 1 1 1]  [-1 -1 -1  1  1  1]  [ 0  0  0 -1  2 -1]
+ [1 1 1 1 1 1], [-1 -1 -1  1  1  1], [ 0  0  0 -1 -1  2]
+  ]
+</code></pre>
+<p>We calculate an irreducible representation of G, and the isotypic projection associated ::</p>
+<pre><code>sage: n,irr = G.irreducible_representations(False) #Irreducible representations
+sage: G.isotypic_projection(irr(2))
+[
+[3 0]
+[0 3]
+]
+</code></pre>
+<p>We define the representation by permutation on the cyclic group and calculate the isotypic projectors ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: G.isotypic_projection(rep)
+[
+[1 1 1 1]  [ 1 -1  1 -1]  [   1 -1*I   -1  1*I]  [   1  1*I   -1 -1*I]
+[1 1 1 1]  [-1  1 -1  1]  [ 1*I    1 -1*I   -1]  [-1*I    1  1*I   -1]
+[1 1 1 1]  [ 1 -1  1 -1]  [  -1  1*I    1 -1*I]  [  -1 -1*I    1  1*I]
+[1 1 1 1], [-1  1 -1  1], [-1*I   -1  1*I    1], [ 1*I   -1 -1*I    1]
+]
+</code></pre>
+<p>We define a representation the group of symmetries of regular hexagon and calculate their isotypic projectors ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: rotation_pi_over_3, reflexion_about_x = matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])
+sage: matrices = [block_diagonal_matrix(rotation_pi_over_3, rotation_pi_over_3),block_diagonal_matrix(reflexion_about_x, reflexion_about_x)];
+sage: rep = representation(generators, matrices, field=SR)
+sage: G = rep.domain()
+sage: G.isotypic_projection(rep)
+[
+[6 0 0 0]
+[0 6 0 0]
+[0 0 6 0]
+[0 0 0 6]
+]
+</code></pre>
+<p>TO ADD MORE EXAMPLES
+TO ADD MORE EXAMPLES
+TO ADD MORE EXAMPLES</p>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.isotypic_base" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">isotypic_base</span><span class="p">(</span><span class="n">rep</span><span class="p">,</span> <span class="n">isotypic_components</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.isotypic_base" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return a list with the basis for each isotypic components of rep or the basis change matrix associated to the isotypic decomposition.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+<li><code>rep</code> -- representation ; a representation defined over the same group as self.</li>
+<li><code>isotypic_components</code> -- a boolean (default: <code>False</code>) ; if False returns the change base matrix, if True returns a list with a base for each isotypic component :: </li>
+</ul>
+<p>OUTPUT: A list with a basis for each isotypic subspace of rep or the change basis matrix to a form in blocks associated to isotypic components of rep.</p>
+<p>EXAMPLES:</p>
+<p>We define the symmetric group of 3 simbols change basis matrix associated to the isotypic decomposition  ::</p>
+<pre><code>sage: G = FiniteGroup(SymmetricGroup(3));
+sage: reg = G.regular_representation();
+sage: G.isotypic_base(reg, isotypic_components=False)
+[ 1| 1| 2 -1  0  0]
+[ 1| 1|-1  2  0  0]
+[ 1| 1|-1 -1  0  0]
+[ 1|-1| 0  0  2 -1]
+[ 1|-1| 0  0 -1  2]
+[ 1|-1| 0  0 -1 -1]
+</code></pre>
+<p>The isotypic basis for each irreducible subspace associated to the regular representation of this group ::</p>
+<pre><code>sage: G.isotypic_base(reg, isotypic_components=True)
+[
+[1]  [ 1]  [ 2 -1  0  0]
+[1]  [ 1]  [-1  2  0  0]
+[1]  [ 1]  [-1 -1  0  0]
+[1]  [-1]  [ 0  0  2 -1]
+[1]  [-1]  [ 0  0 -1  2]
+[1], [-1], [ 0  0 -1 -1]
+]
+</code></pre>
+<p>We define the representation by permutation on the cyclic group and calculate its isotypic decompositions ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: G.isotypic_base(rep, isotypic_components=True)
+[
+[1]  [ 1]  [   1]  [   1]
+[1]  [-1]  [ 1*I]  [-1*I]
+[1]  [ 1]  [  -1]  [  -1]
+[1], [-1], [-1*I], [ 1*I]
+]
+
+sage: change_basis = G.isotypic_base(rep, isotypic_components=False); change_basis
+[   1|   1|   1|   1]
+[   1|  -1| 1*I|-1*I]
+[   1|   1|  -1|  -1]
+[   1|  -1|-1*I| 1*I]
+sage: [rep(g).matrix() for g in G]
+[
+[1 0 0 0]  [0 1 0 0]  [0 0 1 0]  [0 0 0 1]
+[0 1 0 0]  [0 0 1 0]  [0 0 0 1]  [1 0 0 0]
+[0 0 1 0]  [0 0 0 1]  [1 0 0 0]  [0 1 0 0]
+[0 0 0 1], [1 0 0 0], [0 1 0 0], [0 0 1 0]
+]
+sage: [change_basis.inverse()*rep(g).matrix()*change_basis for g in G]
+[
+[1 0 0 0]  [   1    0    0    0]  [ 1  0  0  0]  [   1    0    0    0]
+[0 1 0 0]  [   0   -1    0    0]  [ 0  1  0  0]  [   0   -1    0    0]
+[0 0 1 0]  [   0    0  1*I    0]  [ 0  0 -1  0]  [   0    0 -1*I    0]
+[0 0 0 1], [   0    0    0 -1*I], [ 0  0  0 -1], [   0    0    0  1*I]
+]
+</code></pre>
+<p>We define a representation the group of symmetries of regular hexagon and calculate their matrix change basis(this representation is irreducible) ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])];
+sage: rep = representation(generators, matrices)
+sage: G = rep.domain()
+sage: G.isotypic_base(rep, isotypic_components=True)
+[
+[6 0]
+[0 6]
+]
+</code></pre>
+<p>TO ADD MORE EXAMPLES
+TO ADD MORE EXAMPLES
+TO ADD MORE EXAMPLES</p>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.projection" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">projection</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">right</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.projection" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the projection(or transfers operators) associated to irreducible subrepresentations of right.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+<li><code>right</code> -- representation ; a representation defined over the same group as self.</li>
+<li><code>i,j,k</code> --  integers ; integers numbers representing the projection(or transfer) chosen;
+        i- will choose the irreducible representation, and its range is from 0 until the number of irreducibles. ::<pre><code>j- choose a row of the matrix presentation of the irreducible, its range is the degree of chosen irreducible according i. ::
+
+k- choose a column of the matrix presentation of the irreducible, its range is the degree of chosen irreducible according i. ::
+</code></pre>
+</li>
+</ul>
+
+
+<details class="output" open>
+  <summary>A matrix associated to the operator that projects over an irreducible subrepresentation of right(if j=k), or is a isomorphism between two equivalent subrepresentations of right.</summary>
+  <p>Whenever the irreducible, chosen by index i, it is not a subrepresentation of right this matrix will be null.</p>
+</details>        <p>EXAMPLES:</p>
+<p>We define the representation by permutation on the cyclic group of four elements and calculate its projectors  ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: G.projection(0,0,0, rep)
+[1 1 1 1]
+[1 1 1 1]
+[1 1 1 1]
+[1 1 1 1]
+sage: n, irr = G.irreducible_representations(False)
+sage: list_of_projectors=[];
+for i in range(n): # Choosing the irreducible
+    degree= irr(i).degree() # Calculation the degree of the irreducible
+    j=0;# we will use the first row
+    for k in range(degree):
+        projector = G.projection(i,j,k, rep);
+        list_of_projectors.append(projector)
+sage: list_of_projectors
+[
+[1 1 1 1]  [ 1 -1  1 -1]  [ 1 -I -1  I]  [ 1  I -1 -I]
+[1 1 1 1]  [-1  1 -1  1]  [ I  1 -I -1]  [-I  1  I -1]
+[1 1 1 1]  [ 1 -1  1 -1]  [-1  I  1 -I]  [-1 -I  1  I]
+[1 1 1 1], [-1  1 -1  1], [-I -1  I  1], [ I -1 -I  1]
+]
+</code></pre>
+<p>We define a representation on the group of symmetries of regular hexagon and calculate its projectors ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1,0,0],[0,1/2,-sqrt(3)/2],[0,sqrt(3)/2,1/2]]),matrix([[1,0,0],[0,-1,0],[0,0,1]])];
+sage: rep = representation(generators, matrices)
+sage: G = rep.domain()
+sage: G.projection(0,0,0, rep)
+[     12       0       0]
+[      0       0 0.?e-18]
+[      0 0.?e-18       0]
+sage: n, irr = G.irreducible_representations(False)
+sage: list_of_projectors=[];
+for i in range(n): # Choosing the irreducible
+    degree= irr(i).degree() # Calculation the degree of the irreducible
+    j=0;# we will use the first row
+    for k in range(degree):
+        projector = G.projection(i,j,k, rep);
+        list_of_projectors.append(view(projector, latex=False)) # view creates a better visualization
+sage: list_of_projectors
+[
+[12  0  0]  [0 0 0]  [0 0 0]  [0 0 0]  [0 0 0]  [0 0 0]
+[ 0  0  0]  [0 0 0]  [0 0 0]  [0 0 0]  [0 0 0]  [0 0 0]
+[ 0  0  0], [0 0 0], [0 0 0], [0 0 0], [0 0 0], [0 0 0],
+
+[   0    0    0]  [  0   0   0]
+[   0    3  3*I]  [  0   3 3*I]
+[   0 -3*I    3], [  0 3*I  -3]
+]
+</code></pre>
+<p>We define the regular representation over the symmetric group of 3 simbols and we calculate one of its projectors ::</p>
+<pre><code>sage: G = FiniteGroup(SymmetricGroup(3)) 
+sage: reg = G.regular_representation();
+sage: view(G.projection(2,1,1, reg),latex=False) # The function view creates a better visualization
+[                   1  1/2*I*sqrt(3) - 1/2 -1/2*I*sqrt(3) - 1/2                    0                    0                    0]
+[-1/2*I*sqrt(3) - 1/2                    1  1/2*I*sqrt(3) - 1/2                    0                    0                    0]
+[ 1/2*I*sqrt(3) - 1/2 -1/2*I*sqrt(3) - 1/2                    1                    0                    0                    0]
+[                   0                    0                    0                    1 -1/2*I*sqrt(3) - 1/2  1/2*I*sqrt(3) - 1/2]
+[                   0                    0                    0  1/2*I*sqrt(3) - 1/2                    1 -1/2*I*sqrt(3) - 1/2]
+[                   0                    0                    0 -1/2*I*sqrt(3) - 1/2  1/2*I*sqrt(3) - 1/2                    1]
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.base_to_irreducibles" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">base_to_irreducibles</span><span class="p">(</span><span class="n">right</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.base_to_irreducibles" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the basis change matrix associated to a decomposition of right into irreducibles representations.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+<li><code>right</code> -- representation ; a representation defined over the same group as self.</li>
+</ul>
+<p>OUTPUT: A change basis matrix that decomposes right in its irreducible components.</p>
+<p>EXAMPLES:</p>
+<p>We define the representation by permutation on the cyclic group of four elements and calculate its decomposition into irreducibles(Note that in this case because multiplicity we get the same result with the isotypic base)  ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: A = G.base_to_irreducibles(rep); A
+[ 1  1  1  1]
+[ 1 -1  I -I]
+[ 1  1 -1 -1]
+[ 1 -1 -I  I]
+
+sage: [rep(g).matrix() for g in G]
+[
+[1 0 0 0]  [0 1 0 0]  [0 0 1 0]  [0 0 0 1]
+[0 1 0 0]  [0 0 1 0]  [0 0 0 1]  [1 0 0 0]
+[0 0 1 0]  [0 0 0 1]  [1 0 0 0]  [0 1 0 0]
+[0 0 0 1], [1 0 0 0], [0 1 0 0], [0 0 1 0]
+]
+
+sage: [A.inverse()*rep(g).matrix()*A for g in G]
+[
+[1 0 0 0]  [ 1  0  0  0]  [ 1  0  0  0]  [ 1  0  0  0]
+[0 1 0 0]  [ 0 -1  0  0]  [ 0  1  0  0]  [ 0 -1  0  0]
+[0 0 1 0]  [ 0  0  I  0]  [ 0  0 -1  0]  [ 0  0 -I  0]
+[0 0 0 1], [ 0  0  0 -I], [ 0  0  0 -1], [ 0  0  0  I]
+]
+</code></pre>
+<p>We define a representation on the group of symmetries of regular hexagon and calculate its matrix change basis to decomposing into irreducible blocks ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: P = matrix([[5,3,4],[0,3,4],[0,0,4]]);P
+sage: matrices = [P.inverse()*matrix([[1,0,0],[0,1/2,-sqrt(3)/2],[0,sqrt(3)/2,1/2]])*P,P.inverse()*matrix([[1,0,0],[0,-1,0],[0,0,1]])*P];
+sage: rep = representation(generators, matrices, field=QQbar)
+sage: G = rep.domain()
+sage: B = G.base_to_irreducibles(rep); 
+sage: view(B,latex=False) # This function creates a better visualization of the matrix
+[        12       -9/5      -54/5]
+[         0    3*I + 3 -18*I + 18]
+[         0     -9/4*I     27/2*I]
+
+sage: [view(rep(g).matrix(), latex=False) for g in G]
+[
+[1 0 0]  [                 1               9/10 -2/5*sqrt(3) + 6/5]
+[0 1 0]  [                 0  1/2*sqrt(3) - 1/2        4*sqrt(1/3)]
+[0 0 1], [                 0       -3/8*sqrt(3) -1/2*sqrt(3) - 1/2],
+
+[                 1               9/10  2/5*sqrt(3) + 6/5]
+[                 0 -1/2*sqrt(3) - 1/2       -4*sqrt(1/3)]
+[                 0        3/8*sqrt(3)  1/2*sqrt(3) - 1/2],
+
+[                 1               3/10 -2/5*sqrt(3) + 2/5]
+[                 0  1/2*sqrt(3) + 1/2        4*sqrt(1/3)]
+[                 0       -3/8*sqrt(3) -1/2*sqrt(3) + 1/2],
+
+[  1 6/5 8/5]
+[  0  -1   0]
+[  0   0  -1],
+
+[                 1               3/10  2/5*sqrt(3) + 2/5]
+[                 0 -1/2*sqrt(3) + 1/2       -4*sqrt(1/3)]
+[                 0        3/8*sqrt(3)  1/2*sqrt(3) + 1/2],
+
+[  1   0   0]
+[  0   1 8/3]
+[  0   0  -1],
+
+[                 1               9/10 -2/5*sqrt(3) + 6/5]
+[                 0 -1/2*sqrt(3) - 1/2               -4/3]
+[                 0        3/8*sqrt(3)  1/2*sqrt(3) + 1/2],
+
+[                 1               9/10  2/5*sqrt(3) + 6/5]
+[                 0  1/2*sqrt(3) - 1/2               -4/3]
+[                 0       -3/8*sqrt(3) -1/2*sqrt(3) + 1/2],
+
+[                 1               3/10 -2/5*sqrt(3) + 2/5]
+[                 0 -1/2*sqrt(3) + 1/2                4/3]
+[                 0        3/8*sqrt(3)  1/2*sqrt(3) - 1/2],
+
+[   1  6/5  8/5]
+[   0   -1 -8/3]
+[   0    0    1],
+
+[                 1               3/10  2/5*sqrt(3) + 2/5]
+[                 0  1/2*sqrt(3) + 1/2                4/3]
+[                 0       -3/8*sqrt(3) -1/2*sqrt(3) - 1/2]
+]
+
+sage: [view(B.inverse()*rep(g).matrix()*B, latex=False) for g in G]
+[
+[1 0 0]
+[0 1 0]
+[0 0 1],
+
+[                   1                    0                    0]
+[                   0 -1/2*I*sqrt(3) - 1/2                    0]
+[                   0                    0  1/2*I*sqrt(3) - 1/2],
+
+[                   1                    0                    0]
+[                   0  1/2*I*sqrt(3) - 1/2                    0]
+[                   0                    0 -1/2*I*sqrt(3) - 1/2],
+
+[                   1                    0                    0]
+[                   0 -1/2*I*sqrt(3) + 1/2                    0]
+[                   0                    0  1/2*I*sqrt(3) + 1/2],
+
+[ 1  0  0]
+[ 0 -1  0]
+[ 0  0 -1],
+
+[                   1                    0                    0]
+[                   0  1/2*I*sqrt(3) + 1/2                    0]
+[                   0                    0 -1/2*I*sqrt(3) + 1/2],
+
+[  1   0   0]  [                      1                       0                       0]
+[  0   0   6]  [                      0                       0         3*I*sqrt(3) - 3]
+[  0 1/6   0], [                      0 -1/4*I*sqrt(1/3) - 1/12                       0],
+
+[                     1                      0                      0]  [                      1                       0                       0]
+[                     0                      0       -3*I*sqrt(3) - 3]  [                      0                       0         3*I*sqrt(3) + 3]
+[                     0 1/4*I*sqrt(1/3) - 1/12                      0], [                      0 -1/4*I*sqrt(1/3) + 1/12                       0],
+
+[   1    0    0]
+[   0    0   -6]
+[   0 -1/6    0],
+
+[                     1                      0                      0]
+[                     0                      0       -3*I*sqrt(3) + 3]
+[                     0 1/4*I*sqrt(1/3) + 1/12                      0]
+]
+</code></pre>
+<p>We define the regular representation over the symmetric group of 3 simbols and we decompose into irreducible components ::</p>
+<pre><code>sage: G = FiniteGroup(SymmetricGroup(3)) 
+sage: reg = G.regular_representation();
+sage: C = G.base_to_irreducibles(reg); 
+sage: view(C, latex=False) # This Function creates a better visualization of the matrix
+[                   1                    1                    1                    0                    0                    3]
+[                   1                    1  1/2*I*sqrt(3) - 1/2                    0                    0 -3/2*I*sqrt(3) - 3/2]
+[                   1                    1 -1/2*I*sqrt(3) - 1/2                    0                    0  3/2*I*sqrt(3) - 3/2]
+[                   1                   -1                    0                    3                    1                    0]
+[                   1                   -1                    0  3/2*I*sqrt(3) - 3/2 -1/2*I*sqrt(3) - 1/2                    0]
+[                   1                   -1                    0 -3/2*I*sqrt(3) - 3/2  1/2*I*sqrt(3) - 1/2                    0]
+
+sage: g = G.an_element();
+sage: reg(g).matrix()
+[0 0 0 0 0 1]
+[0 0 0 1 0 0]
+[0 0 0 0 1 0]
+[0 1 0 0 0 0]
+[0 0 1 0 0 0]
+[1 0 0 0 0 0]
+
+sage: A = C.inverse()*reg(g).matrix()*C;
+sage: view(A, latex=False)
+[                    1                     0                     0                     0                     0                     0]
+[                    0                    -1                     0                     0                     0                     0]
+[                    0                     0                     0  -3/2*I*sqrt(3) - 3/2                     0                     0]
+[                    0                     0 1/2*I*sqrt(1/3) - 1/6                     0                     0                     0]
+[                    0                     0                     0                     0                     0  -3/2*I*sqrt(3) - 3/2]
+[                    0                     0                     0                     0 1/2*I*sqrt(1/3) - 1/6                     0]
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.base_equivariant_to_blocks" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">base_equivariant_to_blocks</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.base_equivariant_to_blocks" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the basis change matrix associated to a symmetry adapted basis to an equivariant operator of right.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+<li><code>right</code> -- representation ; a representation defined over the same group as self.</li>
+<li><code>row</code> -- an integer (default: 0) ; an integer in the range of the degree of right, this number will choose the set o projectors to be chosen in the contruction of the base :: </li>
+</ul>
+<p>OUTPUT: A change basis matrix that decomposes the equivariant operator.</p>
+<p>EXAMPLES:</p>
+<p>We define the representation by permutation on the cyclic group of four elements and decompose an equivariant operator under this representation  ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: A = matrix.circulant([1,2,3,4])
+sage: rep.is_equivariant_to(A)
+True
+sage: P = G.base_equivariant_to_blocks(rep); P
+[ 1  1  1  1]
+[ 1 -1  I -I]
+[ 1  1 -1 -1]
+[ 1 -1 -I  I]
+sage: A, P.inverse()*A*P
+(
+[1 2 3 4]  [      10        0        0        0]
+[4 1 2 3]  [       0       -2        0        0]
+[3 4 1 2]  [       0        0 -2*I - 2        0]
+[2 3 4 1], [       0        0        0  2*I - 2]
+)
+</code></pre>
+<p>We define a representation on the permutation group, and decompose an equivariant operator  ::</p>
+<pre><code>sage: G = FiniteGroup(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
+sage: gens = G.gens()
+sage: matrices = [g.matrix() for g in gens]
+sage: rep = representation(gens, matrices)
+sage: operator = matrix([[ 4, -1, -0, -1, -0, -0, -0, -0, -0],
+                        [-1,  4, -1, -0, -1, -0, -0, -0, -0],
+                        [-0, -1,  4, -0, -0, -1, -0, -0, -0],
+                        [-1, -0, -0,  4, -1, -0, -1, -0, -0],
+                        [-0, -1, -0, -1,  4, -1, -0, -1, -0],
+                        [-0, -0, -1, -0, -1,  4, -0, -0, -1],
+                        [-0, -0, -0, -1, -0, -0,  4, -1, -0],
+                        [-0, -0, -0, -0, -1, -0, -1,  4, -1],
+                        [-0, -0, -0, -0, -0, -1, -0, -1,  4]])
+sage: rep.is_equivariant_to(operator)
+True
+sage: P = G.base_equivariant_to_blocks(rep); P
+[ 2  0  0  2  0  2  0  0  0]
+[ 0  2  0  0  2  0  1  0  4]
+[ 2  0  0 -2  0  0  0  8  0]
+[ 0  2  0  0 -2  0  1  0 -4]
+[ 0  0  8  0  0  0  0  0  0]
+[ 0  2  0  0 -2  0 -1  0  4]
+[ 2  0  0 -2  0  0  0 -8  0]
+[ 0  2  0  0  2  0 -1  0 -4]
+[ 2  0  0  2  0 -2  0  0  0]
+sage: operator, P.inverse()*operator*P
+(
+[ 4 -1  0 -1  0  0  0  0  0]  [ 4 -2  0  0  0  0  0  0  0]
+[-1  4 -1  0 -1  0  0  0  0]  [-2  4 -4  0  0  0  0  0  0]
+[ 0 -1  4  0  0 -1  0  0  0]  [ 0 -1  4  0  0  0  0  0  0]
+[-1  0  0  4 -1  0 -1  0  0]  [ 0  0  0  4  0  0  0  0  0]
+[ 0 -1  0 -1  4 -1  0 -1  0]  [ 0  0  0  0  4  0  0  0  0]
+[ 0  0 -1  0 -1  4  0  0 -1]  [ 0  0  0  0  0  4 -1  0  0]
+[ 0  0  0 -1  0  0  4 -1  0]  [ 0  0  0  0  0 -2  4  0  0]
+[ 0  0  0  0 -1  0 -1  4 -1]  [ 0  0  0  0  0  0  0  4 -1]
+[ 0  0  0  0  0 -1  0 -1  4], [ 0  0  0  0  0  0  0 -2  4]
+)
+</code></pre>
+<p>TO ADD MORE EXAMPLES
+TO ADD MORE EXAMPLES
+TO ADD MORE EXAMPLES</p>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.quick_block_prevision" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">quick_block_prevision</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">block_prevision</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.quick_block_prevision" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return a list with order and multiplicities of blocks to an equivariant operator under right defined on self.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+<li><code>right</code> -- representation ; a representation defined over an arbitrary group given by self.</li>
+<li><code>block_prevision</code> -- a boolean (default: <code>False</code>) ; if set to True then prints a string describing the number and orders of blocks to an equivariant operator under right.</li>
+</ul>
+<p>OUTPUT: A list indicating the degree and multiplicity of the representation defined by right. </p>
+<p>EXAMPLES:</p>
+<p>We define the regular representation(reg) over the symmetric group of 4 simbols and calculate the structure of an equivariant operator under reg ::</p>
+<pre><code>sage: H = SymmetricGroup(4)
+sage: G = FiniteGroup(H);
+sage: reg = G.regular_representation();
+sage: G.quick_block_prevision(reg)
+[['degree', 'multiplicity'], [1, 1], [1, 1], [2, 2], [3, 3], [3, 3]]
+
+sage: G.quick_block_prevision(reg, block_prevision=True)
+1 block size 1x1
+1 block size 1x1
+2 block size 2x2
+3 block size 3x3
+3 block size 3x3
+[['degree', 'multiplicity'], [1, 1], [1, 1], [2, 2], [3, 3], [3, 3]]
+</code></pre>
+<p>We define the representation by permutation on the cyclic group and calculate the structure of an equivariant operator ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: G.quick_block_prevision(rep, block_prevision=True)
+1 block size 1x1
+1 block size 1x1
+1 block size 1x1
+1 block size 1x1
+[['degree', 'multiplicity'], [1, 1], [1, 1], [1, 1], [1, 1]]
+</code></pre>
+<p>We calculate the irreducible representations of the group of symmetries of tetrahedron and calculate the structure of an equivariant operator inder its irreducibles ::</p>
+<pre><code>sage: G = FiniteGroup(AlternatingGroup(4));
+sage: n,irr = G.irreducible_representations(False) ##Irreducible representations
+sage: for j in range(n):
+        print(G.quick_block_prevision(irr(j),block_prevision=True))
+1 block size 1x1
+[['degree', 'multiplicity'], [1, 1]]
+1 block size 1x1
+[['degree', 'multiplicity'], [1, 1]]
+1 block size 1x1
+[['degree', 'multiplicity'], [1, 1]]
+3 block size 1x1
+[['degree', 'multiplicity'], [3, 1]]
+</code></pre>
+<p>We define two representation rep and rep1 on the group of symmetries of regular hexagon and calculate the structure of an equivariant operator under each one ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])];
+sage: rep = representation(generators, matrices)
+sage: G = rep.domain()
+sage: G.quick_block_prevision(rep,block_prevision=True)
+2 block size 1x1
+[['degree', 'multiplicity'], [2, 1]]
+
+sage: P = matrix([[2,1],[15,2]]); #A change of basis
+sage: matrices1 = [ block_diagonal_matrix((P.inverse())*A*P, (P.inverse())*A*P) for A in matrices];
+sage: rep1 = representation(generators, matrices1)
+sage: G.quick_block_prevision(rep1,block_prevision=True)
+2 block size 2x2
+[['degree', 'multiplicity'], [2, 2]]
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.FiniteGroup.base_change_eigenvalue_reduction_new" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">base_change_eigenvalue_reduction_new</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">block_prevision</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.FiniteGroup.base_change_eigenvalue_reduction_new" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return part of basis change matrix associated to a symmetry adapted basis to an equivariant operator of right.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- FiniteGroup ; a  Sage permutation group or a group of the class FiniteGroup.</li>
+<li><code>right</code> -- representation ; a representation defined over the same group as self.        </li>
+<li><code>block_prevision</code> -- a boolean (default: <code>False</code>) ; if set to True then prints a string describing the number and orders of blocks to an equivariant operator under right.</li>
+</ul>
+<p>OUTPUT: A list of basis subespaces, along with degree and multiplicitie(number of equivalent copies).
+The restriction of an equivariant operator to each subespace gives a different block matrix of the equivariant operator relative to the symmetry adapted basis.
+In short, these are parts of the symmetry adapted basis that no generates block repetitions.</p>
+<p>EXAMPLES:</p>
+<p>We define the representation by permutation on the cyclic group of four elements and calculates the subspaces that gives one copy of each block of the equivariant operator under this representation  ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: G.base_change_eigenvalue_reduction_new(rep)
+([[
+[1]        
+[1]        
+[1]        
+[1], [1, 1]
+],
+  [
+[ 1]        
+[-1]        
+[ 1]        
+[-1], [1, 1]
+],
+  [
+[ 1]        
+[ I]        
+[-1]        
+[-I], [1, 1]
+],
+  [
+[ 1]        
+[-I]        
+[-1]        
+[ I], [1, 1]
+]],
+ [['degree', 'multiplicity'], [1, 1], [1, 1], [1, 1], [1, 1]])
+
+sage: G.base_change_eigenvalue_reduction_new(rep, block_prevision=True)
+1 block size 1x1
+1 block size 1x1
+1 block size 1x1
+1 block size 1x1
+([[
+[1]        
+[1]        
+[1]        
+[1], [1, 1]
+],
+  [
+[ 1]        
+[-1]        
+[ 1]        
+[-1], [1, 1]
+],
+  [
+[ 1]        
+[ I]        
+[-1]        
+[-I], [1, 1]
+],
+  [
+[ 1]        
+[-I]        
+[-1]        
+[ I], [1, 1]
+]],
+ [['degree', 'multiplicity'], [1, 1], [1, 1], [1, 1], [1, 1]])
+</code></pre>
+<p>We define a representation on the permutation group, and calculates parts of the symmetry adapted basis that generates no repetition in the blocks of an equivariant operator  ::</p>
+<pre><code>sage: G = FiniteGroup(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
+sage: gens = G.gens()
+sage: matrices = [g.matrix() for g in gens]
+sage: rep = representation(gens, matrices)
+sage: G.base_change_eigenvalue_reduction_new(rep)
+([[
+[2 0 0]        
+[0 2 0]        
+[2 0 0]        
+[0 2 0]        
+[0 0 8]        
+[0 2 0]        
+[2 0 0]        
+[0 2 0]        
+[2 0 0], [1, 3]
+],
+  [
+[ 2]        
+[ 0]        
+[-2]        
+[ 0]        
+[ 0]        
+[ 0]        
+[-2]        
+[ 0]        
+[ 2], [1, 1]
+],
+  [
+[ 0]        
+[ 2]        
+[ 0]        
+[-2]        
+[ 0]        
+[-2]        
+[ 0]        
+[ 2]        
+[ 0], [1, 1]
+],
+  [
+[ 2  0]        
+[ 0  1]        
+[ 0  0]        
+[ 0  1]        
+[ 0  0]        
+[ 0 -1]        
+[ 0  0]        
+[ 0 -1]        
+[-2  0], [2, 2]
+]],
+ [['degree', 'multiplicity'], [1, 3], [1, 1], [1, 1], [2, 2]])
+</code></pre>
+<p>We define the regular representation(reg) over the symmetric group of 3 simbols and calculate the subspaces that gives all the blocks of an equivariant operator without repetition ::</p>
+<pre><code>sage: H = SymmetricGroup(3)
+sage: G = FiniteGroup(H);
+sage: reg = G.regular_representation();
+sage: G.base_change_eigenvalue_reduction_new(reg,block_prevision=True)
+1 block size 1x1
+1 block size 1x1
+2 block size 2x2
+([[
+[1]        
+[1]        
+[1]        
+[1]        
+[1]        
+[1], [1, 1]
+],
+  [
+[ 1]        
+[ 1]        
+[ 1]        
+[-1]        
+[-1]        
+[-1], [1, 1]
+],
+  [
+[                                         1                                          0]
+[-0.500000000000000? + 0.866025403784439?*I                                          0]
+[-0.500000000000000? - 0.866025403784439?*I                                          0]
+[                                         0                                          1]
+[                                         0 -0.500000000000000? - 0.866025403784439?*I]
+[                                         0 -0.500000000000000? + 0.866025403784439?*I],
+
+[2, 2]
+]],
+ [['degree', 'multiplicity'], [1, 1], [1, 1], [2, 2]])
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="pysymmetry.MapRepresentation" class="doc doc-heading">
+            <code>pysymmetry.MapRepresentation</code>
+
+
+<a href="#pysymmetry.MapRepresentation" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="sage.categories.morphism.SetMorphism">SetMorphism</span></code></p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.inner_product" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">inner_product</span><span class="p">(</span><span class="n">right</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.MapRepresentation.inner_product" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the inner product between self and right.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- representation ; a representation defined over an arbitrary group G.</li>
+<li><code>right</code> -- representation ; a representation defined over the same group as self.</li>
+</ul>
+<p>OUTPUT: The inner product between the two representations defined on the group G. </p>
+<p>EXAMPLES:</p>
+<p>We define the representation by permutation on the cyclic group of 4 elements and calculate its inner products with the trivial representation ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: n,irr = G.irreducible_representations(False) #Irreducible representations
+sage: rep.inner_product(irr(0))
+1
+</code></pre>
+<p>We define one representation on the group of symmetries of regular hexagon and calculate the inner product with itself ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])];
+sage: rep = representation(generators, matrices)
+sage: rep.inner_product(rep)
+1
+</code></pre>
+<p>We define the regular representation over the symmetric group of 4 simbols and calculate the inner products between the regular representation and the irreducible representations ::</p>
+<pre><code>sage: H = SymmetricGroup(4)
+sage: G = FiniteGroup(H);
+sage: n,irr = G.irreducible_representations(False) #Irreducible representations
+sage: reg = G.regular_representation();
+sage: [reg.inner_product(irr(j)) for j in range(n)] # The inner product between the regular and irreducibles
+[1, 1, 2, 3, 3]
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.direct_sum" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">direct_sum</span><span class="p">(</span><span class="o">*</span><span class="n">reps</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.MapRepresentation.direct_sum" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>INPUT: A list of representations.
+OUTPUT: Their direct sum</p>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.an_element" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">an_element</span><span class="p">()</span></code>
+
+<a href="#pysymmetry.MapRepresentation.an_element" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return an image of an element of the group under self.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- representation ; a representation defined over an arbitrary group G.</li>
+</ul>
+<p>OUTPUT: A linear transformation corresponding to the image under self of a random element of the group G. </p>
+<p>EXAMPLES:</p>
+<p>We define the cyclic group of 4 elements and choose an element to show its image under self ::</p>
+<pre><code>sage: G = CyclicPermutationGroup(4) 
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: rep.an_element()
+Linear transformation associated with element g=(1,2,3,4), represented by the non-singular matrix:
+[0 1 0 0]
+[0 0 1 0]
+[0 0 0 1]
+[1 0 0 0]
+Representation space: Vector space of dimension 4 over Algebraic Field
+</code></pre>
+<p>We define one representation on the group of symmetries of regular hexagon and show the image of an element of the group ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])];
+sage: rep = representation(generators, matrices)
+sage: rep.an_element()
+Linear transformation associated with element g=(1,3)(4,6), represented by the non-singular matrix:
+[               -1/2 -0.866025403784439?]
+[-0.866025403784439?                 1/2]
+Representation space: Vector space of dimension 2 over Algebraic Field
+</code></pre>
+<p>We define the regular representation over the symmetric group of 4 simbols and calculate the image of a random element ::</p>
+<pre><code>sage: H = SymmetricGroup(4)
+sage: G = FiniteGroup(H);
+sage: reg = G.regular_representation();
+sage: reg.an_element()
+Linear transformation associated with element g=(1,3,4), represented by the non-singular matrix:
+24 x 24 dense matrix over Algebraic Field
+Representation space: Vector space of dimension 24 over Algebraic Field
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.degree" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">degree</span><span class="p">()</span></code>
+
+<a href="#pysymmetry.MapRepresentation.degree" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the degree of a representation defined over an arbitrary group G.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- representation; a representation defined over an arbitrary group G.</li>
+</ul>
+<p>OUTPUT: The degree of self, i.e. , the dimension of the subjacent vector space of self. </p>
+<p>EXAMPLES:</p>
+<p>We define the representation by permutation on the cyclic group of 4 elements ::</p>
+<pre><code>sage: G = CyclicPermutationGroup(4) 
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: rep.degree()
+4
+</code></pre>
+<p>We define one representation on the group of symmetries of regular hexagon ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices1 = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])];
+sage: rep = representation(generators, matrices1)
+sage: rep.degree()
+2
+</code></pre>
+<p>We define the regular representation over the symmetric group of 4 simbols and calculate its degree ::</p>
+<pre><code>sage: H = SymmetricGroup(4)
+sage: G = FiniteGroup(H);
+sage: reg = G.regular_representation();
+sage: reg.degree()
+24
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.is_equivariant_to" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">is_equivariant_to</span><span class="p">(</span><span class="n">M</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.MapRepresentation.is_equivariant_to" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Tests if an operator is equivariant to a representation defined over a an arbitrary group G.</p>
+<p>INPUT:</p>
+<ul>
+<li>
+<p><code>M</code> -- matrix ; a square matrix associated to an operator over a representation vector space.</p>
+</li>
+<li>
+<p><code>self</code> -- representation; a representation defined over an arbitrary group G.</p>
+</li>
+</ul>
+<p>OUTPUT: True if the operator is equivariant or False if is not equivariant.</p>
+<p>EXAMPLES:</p>
+<p>Define the representation by permutation on the cyclic group of 4 elements ::</p>
+<pre><code>sage: G = CyclicPermutationGroup(4) 
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: v = [1,2,3,4]
+sage: A = matrix.circulant(v); 
+sage: rep.is_equivariant_to(A)
+True
+sage: B = matrix.circulant(SR.var('a b c d'))
+sage: rep.is_equivariant_to(B)
+True
+</code></pre>
+<p>We define a representation over the symmetric group and test if the identity is equivariant ::</p>
+<pre><code>sage: G = SymmetricGroup(5)
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices, field=AA)
+sage: rep.is_equivariant_to(identity_matrix(AA, 5))
+True
+sage: C = matrix.hilbert(5).change_ring(AA);
+sage: rep.is_equivariant_to(C);
+False
+</code></pre>
+<p>ENRIQUECER QUANDO DEFINIR PRODUTO TENSORIAL OU SOMA DIRETA.</p>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.is_unitary" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">is_unitary</span><span class="p">()</span></code>
+
+<a href="#pysymmetry.MapRepresentation.is_unitary" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Tests if a representation defined over an arbitrary group G is unitary.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- representation; a representation defined over an arbitrary group G.</li>
+</ul>
+<p>OUTPUT: True if the representation is unitary or False if is not unitary.</p>
+<p>EXAMPLES:</p>
+<p>Define the representation by permutation on the cyclic group of 4 elements ::</p>
+<pre><code>sage: G = CyclicPermutationGroup(4) 
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: rep.is_unitary()
+True
+</code></pre>
+<p>Define two representations on the group of symmetries of regular hexagon ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: P = matrix([[2,1],[15,2]]); ## A non-unitary base change
+sage: matrices1 = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])];
+sage: matrices2 = [P.inverse()*A*P for A in matrices1]
+sage: rep1 = representation(generators, matrices1)
+sage: rep2 = representation(generators, matrices2)
+sage: rep1.is_unitary(), rep2.is_unitary()
+(True, False)
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.is_irreducible" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">is_irreducible</span><span class="p">()</span></code>
+
+<a href="#pysymmetry.MapRepresentation.is_irreducible" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Tests if a representation defined over an arbitrary group G is irreducible.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- representation; a representation defined over an arbitrary group G.</li>
+</ul>
+<p>OUTPUT: True if the representation is irreducible  or False if is reducible.</p>
+<p>EXAMPLES:</p>
+<p>Define the representation by permutation on the cyclic group of 6 elements ::</p>
+<pre><code>sage: G = CyclicPermutationGroup(6) 
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: rep.is_irreducible()
+False
+</code></pre>
+<p>Define one representation on the group of symmetries of regular hexagon ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])];
+sage: rep = representation(generators, matrices)
+sage: rep.is_irreducible()
+True
+</code></pre>
+<p>We define the regular representation over the symmetric group of 4 simbols and ask if is irreducible ::</p>
+<pre><code>sage: H = SymmetricGroup(4)
+sage: G = FiniteGroup(H);
+sage: reg = G.regular_representation();
+sage: reg.is_irreducible()
+False
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.MapRepresentation.is_representation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">is_representation</span><span class="p">()</span></code>
+
+<a href="#pysymmetry.MapRepresentation.is_representation" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>INPUT- A representation.
+OUTPUT- A boolean True or False acording rep being a representation</p>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="pysymmetry.Dg_Linear_Transformation" class="doc doc-heading">
+            <code>pysymmetry.Dg_Linear_Transformation</code>
+
+
+<a href="#pysymmetry.Dg_Linear_Transformation" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="sage.modules.vector_space_morphism.VectorSpaceMorphism">VectorSpaceMorphism</span></code></p>
+
+
+
+
+
+
+
+
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="pysymmetry.Dg_Linear_Transformation.character" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">character</span><span class="p">()</span></code>
+
+<a href="#pysymmetry.Dg_Linear_Transformation.character" class="headerlink" title="Permanent link">&para;</a></h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Return the character of a representation defined over an arbitrary group G.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>self</code> -- representation; a representation defined over an arbitrary group G.</li>
+</ul>
+<p>OUTPUT: The character of self. </p>
+<p>EXAMPLES:</p>
+<p>We define the representation by permutation on the cyclic group of 4 elements and calculate its characters ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4)) 
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices); rep
+sage: g = G.an_element()
+sage: rep(g).character()
+0
+sage: [rep(g).character() for g in G]
+[4, 0, 0, 0]
+</code></pre>
+<p>We define one representation on the group of symmetries of regular hexagon and calculate the character of each element in the group ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])];
+sage: rep = representation(generators, matrices)
+sage: G = rep.domain()
+sage: [ [g,rep(g).character()] for g in G]
+[[(), 2],
+ [(1,5,3)(2,6,4), -1],
+ [(1,3,5)(2,4,6), -1],
+ [(1,6,5,4,3,2), 1],
+ [(1,4)(2,5)(3,6), -2],
+ [(1,2,3,4,5,6), 1],
+ [(2,6)(3,5), 0],
+ [(1,5)(2,4), 0],
+ [(1,3)(4,6), 0],
+ [(1,6)(2,5)(3,4), 0],
+ [(1,4)(2,3)(5,6), 0],
+ [(1,2)(3,6)(4,5), 0]]
+</code></pre>
+<p>We define the regular representation over the symmetric group of 4 simbols and calculate its characters ::</p>
+<pre><code>sage: H = SymmetricGroup(4)
+sage: G = FiniteGroup(H);
+sage: reg = G.regular_representation();
+sage: [ [g,reg(g).character()] for g in G]
+[[(), 24],
+ [(1,4)(2,3), 0],
+ [(1,2)(3,4), 0],
+ [(1,3)(2,4), 0],
+ [(2,4,3), 0],
+ [(1,4,2), 0],
+ [(1,2,3), 0],
+ [(1,3,4), 0],
+ [(2,3,4), 0],
+ [(1,4,3), 0],
+ [(1,2,4), 0],
+ [(1,3,2), 0],
+ [(3,4), 0],
+ [(1,4,2,3), 0],
+ [(1,2), 0],
+ [(1,3,2,4), 0],
+ [(2,4), 0],
+ [(1,4,3,2), 0],
+ [(1,2,3,4), 0],
+ [(1,3), 0],
+ [(2,3), 0],
+ [(1,4), 0],
+ [(1,2,4,3), 0],
+ [(1,3,4,2), 0]]
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div><hr />
+<h3 id="core-module-functions">Core Module Functions<a class="headerlink" href="#core-module-functions" title="Permanent link">&para;</a></h3>
+
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pysymmetry.representation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">pysymmetry</span><span class="o">.</span><span class="n">representation</span><span class="p">(</span><span class="n">generators</span><span class="p">,</span> <span class="n">matrices</span><span class="p">,</span> <span class="n">field</span><span class="o">=</span><span class="n">QQbar</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.representation" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Create a representation of an arbitrary group G.</p>
+<p>INPUT:</p>
+<ul>
+<li>
+<p><code>generators</code> -- list; generators of the group G.</p>
+</li>
+<li>
+<p><code>matrices</code> -- list; generators images in the same sequence of generators.</p>
+</li>
+<li>
+<p><code>field</code> -- Sage ring (default: <code>QQbar</code>); Field of the subjacent representation vector space. Faster computations using the fields <code>QQbar</code> or <code>AA</code>.</p>
+</li>
+</ul>
+<p>OUTPUT: Mapping of the group generated by <code>generators</code> to the group of matrices generated by <code>matrices</code>.</p>
+<p>EXAMPLES:</p>
+<p>This example illustrates the representation by permutation defined on the group of symmetries of the equilateral triangle ::</p>
+<pre><code>sage: G = DihedralGroup(3) 
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: rep
+Map: 
+ From: Permutation FiniteGroup with generators [(1,2,3), (1,3)] 
+ To: Matrix group over Algebraic Field with 2 generators (
+[0 1 0]  [0 0 1]
+[0 0 1]  [0 1 0]
+[1 0 0], [1 0 0]
+).
+</code></pre>
+<p>Matrix associated to an element g of G ::</p>
+<pre><code>sage: g = G.an_element()
+sage: rep(g).matrix()
+[0 1 0]
+[1 0 0]
+[0 0 1]
+</code></pre>
+<p>We define the generators of the group of symmetries of an regular hexagon, and the correspondent matrices of symmetry (a rotation through an angle <span class="arithmatex">\(\pi/3\)</span>,
+and a reflexion across the <span class="arithmatex">\(x\)</span> axis in the cartesian plane) ::</p>
+<pre><code>sage: generators = ["(1,2,3,4,5,6)","(1,4)(2,3)(5,6)"]
+sage: matrices = [matrix([[1/2,-sqrt(3)/2],[sqrt(3)/2,1/2]]),matrix([[-1,0],[0,1]])]
+sage: rep = representation(generators, matrices)
+sage: rep("(1,2,3,4,5,6)")
+Linear transformation associated with element g=(1,2,3,4,5,6), represented by the non-singular matrix:
+[                1/2 -0.866025403784439?]
+[ 0.866025403784439?                 1/2]
+Representation space: Vector space of dimension 2 over Algebraic Field
+
+sage: rep("(1,4)(2,3)(5,6)")
+Linear transformation associated with element g=(1,4)(2,3)(5,6), represented by the non-singular matrix:
+[-1  0]
+[ 0  1]
+Representation space: Vector space of dimension 2 over Algebraic Field
+
+sage: (rep.domain()).is_isomorphic(DihedralGroup(6))
+True
+</code></pre>
+<p>Next we define the same representation where the field is choosed to be SR ::</p>
+<pre><code>sage: rep = representation(generators, matrices, field=SR)
+sage: rep("(1,2,3,4,5,6)")
+Linear transformation associated with element g=(1,2,3,4,5,6), represented by the non-singular matrix:
+[         1/2 -1/2*sqrt(3)]
+[ 1/2*sqrt(3)          1/2]
+Representation space: Vector space of dimension 2 over Symbolic Ring
+</code></pre>
+<p>We choose a random element of the group and show its matrix ::</p>
+<pre><code>sage: G = FiniteGroup(generators)
+sage: g = G.an_element()
+sage: rep(g)
+Linear transformation associated with element g=(1,3)(4,6), represented by the non-singular matrix:
+[        -1/2 -1/2*sqrt(3)]
+[-1/2*sqrt(3)          1/2]
+Representation space: Vector space of dimension 2 over Symbolic Ring
+</code></pre>
+<p>The identity and inverse properties of the representation are illustred ::</p>
+<pre><code>sage: e = G.identity()
+sage: rep(e)
+Linear transformation associated with element g=(), represented by the non-singular matrix:
+[1 0]
+[0 1]
+Representation space: Vector space of dimension 2 over Symbolic Ring
+sage: [rep(g.inverse())==rep(g).inverse() for g in G]
+[True, True, True, True, True, True, True, True, True, True, True, True]
+</code></pre>
+<p>It is an error to choose the group element as a tuple ::</p>
+<pre><code>sage: rep((1,4)(2,3)(5,6))
+TypeError: Traceback (most recent call last):
+...
+TypeError: 'tuple' object is not callable
+
+sage: rep((1,2,3,4,5,6))
+TypeError: Traceback (most recent call last):
+...
+TypeError:  'tuple' object is not callable
+</code></pre>
+<p>The argument can be a string or a list. Be aware that '(1,2,3,4,5,6)' is the usual
+notation of cycle, while [1,2,3,4,5,6] lists the images of the permutation ::</p>
+<pre><code>sage: rep("(1,2,3,4,5,6)")
+Linear transformation associated with element g=(1,2,3,4,5,6), represented by the non-singular matrix:
+[         1/2 -1/2*sqrt(3)]
+[ 1/2*sqrt(3)          1/2]
+Representation space: Vector space of dimension 2 over Symbolic Ring
+
+sage: rep([1,2,3,4,5,6])
+Linear transformation associated with element g=(), represented by the non-singular matrix:
+[1 0]
+[0 1]
+Representation space: Vector space of dimension 2 over Symbolic Ring
+
+sage: rep([2,3,4,5,6,1])
+Linear transformation associated with element g=(1,2,3,4,5,6), represented by the non-singular matrix:
+[         1/2 -1/2*sqrt(3)]
+[ 1/2*sqrt(3)          1/2]
+Representation space: Vector space of dimension 2 over Symbolic Ring
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h2 id="pysymmetry.get_block" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">pysymmetry</span><span class="o">.</span><span class="n">get_block</span><span class="p">(</span><span class="n">columm_base</span><span class="p">,</span> <span class="n">matrix_equiv</span><span class="p">)</span></code>
+
+<a href="#pysymmetry.get_block" class="headerlink" title="Permanent link">&para;</a></h2>
+
+
+    <div class="doc doc-contents first">
+
+        <p>Return the matricial representation of matrix_equiv when restricted to the subspace whose basis is columm_base.</p>
+<p>INPUT:</p>
+<ul>
+<li><code>columm_base</code> -- matrix ; a matrix(with full rank) whose columns are part of symmetry adapted basis.</li>
+<li><code>matrix_equiv</code> -- matrix ; a matrix an equivariant operator.</li>
+</ul>
+<p>OUTPUT: A matrix representing the restriction of matrix_equiv to the subespaces given by column_base.</p>
+<p>EXAMPLES:</p>
+<p>We define the representation by permutation on the cyclic group of four elements and calculates the blocks of an equivariant operator under this representation  ::</p>
+<pre><code>sage: G = FiniteGroup(CyclicPermutationGroup(4))
+sage: generators = G.gens()
+sage: matrices = [g.matrix() for g in generators]
+sage: rep = representation(generators, matrices)
+sage: subspaces = G.base_change_eigenvalue_reduction_new(rep) #The Invariant Subspaces
+sage: A = matrix.circulant([1,2,3,4]); #An equivariant Operator 
+sage: rep.is_equivariant_to(A)
+True
+sage: [get_block(k[0],A) for k in subspaces[0]] # The block decomposition of the equivariant operator
+[[10], [-2], [-2 - 2*I], [-2 + 2*I]]
+</code></pre>
+<p>We define a representation on a permutation group, and calculates the blocks(no repetition) of an equivariant operator  ::</p>
+<pre><code>sage: G = FiniteGroup(['(2,4)(3,7)(6,8)', '(1,3)(4,6)(7,9)'])
+sage: gens = G.gens()
+sage: matrices = [g.matrix() for g in gens]
+sage: rep = representation(gens, matrices)
+sage: operator = matrix([[ 4, -1, -0, -1, -0, -0, -0, -0, -0],
+                        [-1,  4, -1, -0, -1, -0, -0, -0, -0],
+                        [-0, -1,  4, -0, -0, -1, -0, -0, -0],
+                        [-1, -0, -0,  4, -1, -0, -1, -0, -0],
+                        [-0, -1, -0, -1,  4, -1, -0, -1, -0],
+                        [-0, -0, -1, -0, -1,  4, -0, -0, -1],
+                        [-0, -0, -0, -1, -0, -0,  4, -1, -0],
+                        [-0, -0, -0, -0, -1, -0, -1,  4, -1],
+                        [-0, -0, -0, -0, -0, -1, -0, -1,  4]])  #An equivariant Operator 
+sage: rep.is_equivariant_to(operator)
+True
+sage: subspaces = G.base_change_eigenvalue_reduction_new(rep) #The Invariant Subspaces
+sage: [get_block(k[0],operator) for k in subspaces[0]] # The block decomposition of the equivariant operator
+[
+[ 4 -2  0]                   
+[-2  4 -4]            [ 4 -1]
+[ 0 -1  4], [4], [4], [-2  4]
+]
+
+#NOTE: It is worth to note, in this case, that the two equal blocks [4], comes from inequivalent subrepresentations.
+In this case, the theory has not way to foresee that.
+</code></pre>
+<p>We define the regular representation(reg) over the symmetric group of 3 simbols and calculate the blocks of an equivariant operator without repetition ::</p>
+<pre><code>sage: H = SymmetricGroup(3)
+sage: G = FiniteGroup(H);
+sage: reg = G.regular_representation();
+sage: Id = matrix.identity(reg.degree()); # Identity matrix
+sage: reg.is_equivariant_to(Id)
+True
+sage: subspaces = G.base_change_eigenvalue_reduction_new(reg) #The Invariant Subspaces
+sage: [get_block(k[0],Id) for k in subspaces[0]] # The block decomposition of the equivariant operator
+[
+[1], [1],
+
+[1.000000000000000? + 0.?e-18*I                              0]
+[                             0 1.000000000000000? + 0.?e-18*I]
+]
+</code></pre>
+<p>REFERENCES:</p>
+<p>For more information, see the following references:</p>
+<ul>
+<li>
+<p>[Ser1977]_Serre, Jean-Pierre. Linear representations of finite groups. Vol. 42. New York: springer, 1977.</p>
+</li>
+<li>
+<p>[Sti2012]_Stiefel, E., and A. Fässler. FiniteGroup theoretical methods and their applications. Springer Science &amp; Business Media, 2012.</p>
+</li>
+</ul>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs", "navigation.top"], "search": "../assets/javascripts/workers/search.d50fe291.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.50899def.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"></script>
+      
+        <script src="../javascripts/katex-init.js"></script>
+      
+    
+  </body>
+</html>
