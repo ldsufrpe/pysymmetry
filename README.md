@@ -99,7 +99,7 @@ This section provides a comprehensive test run to demonstrate the core functiona
 
 #### Sample Code (to be run in a SageMath Jupyter cell)
 
-```python
+```py
 # Import necessary components from SageMath and PySymmetry
 from sage.all import SymmetricGroup
 from pysymmetry import FiniteGroup
