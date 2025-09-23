@@ -1091,8 +1091,8 @@ class FiniteGroup(PermutationGroup_generic):
         return info
            	
 
-      
-    def base_change_eigenvalue_reduction_new(self, right, block_prevision=False):
+    #Nota: Falta unificar as saidas das bases    
+    def base_change_equivariant_reduced(self, right, block_prevision=False):
         r"""
         Return part of basis change matrix associated to a symmetry adapted basis to an equivariant operator of right.
 
@@ -1116,7 +1116,7 @@ class FiniteGroup(PermutationGroup_generic):
             sage: generators = G.gens()
             sage: matrices = [g.matrix() for g in generators]
             sage: rep = representation(generators, matrices)
-            sage: G.base_change_eigenvalue_reduction_new(rep)
+            sage: G.base_change_equivariant_reduced(rep)
             ([[
             [1]        
             [1]        
@@ -1143,7 +1143,7 @@ class FiniteGroup(PermutationGroup_generic):
             ]],
              [['degree', 'multiplicity'], [1, 1], [1, 1], [1, 1], [1, 1]])
 
-            sage: G.base_change_eigenvalue_reduction_new(rep, block_prevision=True)
+            sage: G.base_change_equivariant_reduced(rep, block_prevision=True)
             1 block size 1x1
             1 block size 1x1
             1 block size 1x1
@@ -1182,7 +1182,7 @@ class FiniteGroup(PermutationGroup_generic):
             sage: gens = G.gens()
             sage: matrices = [g.matrix() for g in gens]
             sage: rep = representation(gens, matrices)
-            sage: G.base_change_eigenvalue_reduction_new(rep)
+            sage: G.base_change_equivariant_reduced(rep)
             ([[
             [2 0 0]        
             [0 2 0]        
@@ -1234,7 +1234,7 @@ class FiniteGroup(PermutationGroup_generic):
             sage: H = SymmetricGroup(3)
             sage: G = FiniteGroup(H);
             sage: reg = G.regular_representation();
-            sage: G.base_change_eigenvalue_reduction_new(reg,block_prevision=True)
+            sage: G.base_change_equivariant_reduced(reg,block_prevision=True)
             1 block size 1x1
             1 block size 1x1
             2 block size 2x2
@@ -1374,7 +1374,7 @@ def get_block(columm_base, matrix_equiv):
         sage: generators = G.gens()
         sage: matrices = [g.matrix() for g in generators]
         sage: rep = representation(generators, matrices)
-        sage: subspaces = G.base_change_eigenvalue_reduction_new(rep) #The Invariant Subspaces
+        sage: subspaces = G.base_change_equivariant_reduced(rep) #The Invariant Subspaces
         sage: A = matrix.circulant([1,2,3,4]); #An equivariant Operator 
         sage: rep.is_equivariant_to(A)
         True
@@ -1399,7 +1399,7 @@ def get_block(columm_base, matrix_equiv):
                                 [-0, -0, -0, -0, -0, -1, -0, -1,  4]])  #An equivariant Operator 
         sage: rep.is_equivariant_to(operator)
         True
-        sage: subspaces = G.base_change_eigenvalue_reduction_new(rep) #The Invariant Subspaces
+        sage: subspaces = G.base_change_equivariant_reduced(rep) #The Invariant Subspaces
         sage: [get_block(k[0],operator) for k in subspaces[0]] # The block decomposition of the equivariant operator
         [
         [ 4 -2  0]                   
@@ -1418,7 +1418,7 @@ def get_block(columm_base, matrix_equiv):
         sage: Id = matrix.identity(reg.degree()); # Identity matrix
         sage: reg.is_equivariant_to(Id)
         True
-        sage: subspaces = G.base_change_eigenvalue_reduction_new(reg) #The Invariant Subspaces
+        sage: subspaces = G.base_change_equivariant_reduced(reg) #The Invariant Subspaces
         sage: [get_block(k[0],Id) for k in subspaces[0]] # The block decomposition of the equivariant operator
         [
         [1], [1],

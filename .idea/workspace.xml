@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e92c552a-fcdc-4944-85d0-a867b46876d9" name="Changes" comment="Remove 2D simulation timing and eigenvalue analysis notebook&#10;&#10;This commit removes the notebook used for timing and eigenvalue &#10;analysis in 2D simulations. The deletion ensures outdated or &#10;unneeded content is no longer part of the codebase." />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ldsufrpe"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ldsufrpe/pysymmetry.git",
+    "accountId": "b1322682-d0ee-4d1a-8c93-0072817eacff"
+  }
+}]]></component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="32QkUsAzf2Q0yLBOGcXw6fPOFG1" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "dev",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "//wsl.localhost/Ubuntu-22.04/home/ldsufrpe/pysymmetry-1",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-f27c65a3e318-JavaScript-PY-251.23774.444" />
+        <option value="bundled-python-sdk-890ed5b35930-d9c5bdb153f4-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-251.23774.444" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e92c552a-fcdc-4944-85d0-a867b46876d9" name="Changes" comment="" />
+      <created>1757360202871</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1757360202871</updated>
+      <workItem from="1757360204396" duration="1158000" />
+    </task>
+    <task id="LOCAL-00001" summary="Remove 2D simulation timing and eigenvalue analysis notebook&#10;&#10;This commit removes the notebook used for timing and eigenvalue &#10;analysis in 2D simulations. The deletion ensures outdated or &#10;unneeded content is no longer part of the codebase.">
+      <option name="closed" value="true" />
+      <created>1757360280244</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1757360280244</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Remove 2D simulation timing and eigenvalue analysis notebook&#10;&#10;This commit removes the notebook used for timing and eigenvalue &#10;analysis in 2D simulations. The deletion ensures outdated or &#10;unneeded content is no longer part of the codebase." />
+    <option name="LAST_COMMIT_MESSAGE" value="Remove 2D simulation timing and eigenvalue analysis notebook&#10;&#10;This commit removes the notebook used for timing and eigenvalue &#10;analysis in 2D simulations. The deletion ensures outdated or &#10;unneeded content is no longer part of the codebase." />
+  </component>
+</project>
