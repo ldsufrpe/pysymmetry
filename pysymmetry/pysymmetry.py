@@ -1094,7 +1094,7 @@ class FiniteGroup(PermutationGroup_generic):
     #Nota: Falta unificar as saidas das bases    
     def base_change_equivariant_reduced(self, right, block_prevision=False):
         r"""
-        Return part of basis change matrix associated to a symmetry adapted basis to an equivariant operator of right.
+        Return parts of the symmetry adapted basis that generates no repetition in the blocks of an equivariant operator.
 
 
         INPUT:
