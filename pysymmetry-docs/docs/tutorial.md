@@ -163,7 +163,7 @@ Now, we use `PySymmetry` to find the basis that respects the group's structure. 
 rep = G.natural_representation()
 
 # Compute the basis that reduces the representation
-base_info, _ = G.base_change_eigenvalue_reduction_new(rep)
+base_info, _ = G.base_change_equivariant_reduced(rep)
 ```
 
 ### Step 4: Decompose the Matrix and Find Eigenvalues

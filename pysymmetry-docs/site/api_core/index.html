@@ -575,9 +575,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pysymmetry.FiniteGroup.base_change_eigenvalue_reduction_new" class="md-nav__link">
+  <a href="#pysymmetry.FiniteGroup.base_change_equivariant_reduced" class="md-nav__link">
     <span class="md-ellipsis">
-      base_change_eigenvalue_reduction_new
+      base_change_equivariant_reduced
     </span>
   </a>
   
@@ -961,9 +961,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#pysymmetry.FiniteGroup.base_change_eigenvalue_reduction_new" class="md-nav__link">
+  <a href="#pysymmetry.FiniteGroup.base_change_equivariant_reduced" class="md-nav__link">
     <span class="md-ellipsis">
-      base_change_eigenvalue_reduction_new
+      base_change_equivariant_reduced
     </span>
   </a>
   
@@ -2102,10 +2102,10 @@ sage: G.quick_block_prevision(rep1,block_prevision=True)
 <div class="doc doc-object doc-function">
 
 
-<h3 id="pysymmetry.FiniteGroup.base_change_eigenvalue_reduction_new" class="doc doc-heading">
-            <code class="highlight language-python"><span class="n">base_change_eigenvalue_reduction_new</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">block_prevision</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<h3 id="pysymmetry.FiniteGroup.base_change_equivariant_reduced" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">base_change_equivariant_reduced</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">block_prevision</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
-<a href="#pysymmetry.FiniteGroup.base_change_eigenvalue_reduction_new" class="headerlink" title="Permanent link">&para;</a></h3>
+<a href="#pysymmetry.FiniteGroup.base_change_equivariant_reduced" class="headerlink" title="Permanent link">&para;</a></h3>
 
 
     <div class="doc doc-contents ">
@@ -2126,7 +2126,7 @@ In short, these are parts of the symmetry adapted basis that no generates block 
 sage: generators = G.gens()
 sage: matrices = [g.matrix() for g in generators]
 sage: rep = representation(generators, matrices)
-sage: G.base_change_eigenvalue_reduction_new(rep)
+sage: G.base_change_equivariant_reduced(rep)
 ([[
 [1]        
 [1]        
@@ -2153,7 +2153,7 @@ sage: G.base_change_eigenvalue_reduction_new(rep)
 ]],
  [['degree', 'multiplicity'], [1, 1], [1, 1], [1, 1], [1, 1]])
 
-sage: G.base_change_eigenvalue_reduction_new(rep, block_prevision=True)
+sage: G.base_change_equivariant_reduced(rep, block_prevision=True)
 1 block size 1x1
 1 block size 1x1
 1 block size 1x1
@@ -2189,7 +2189,7 @@ sage: G.base_change_eigenvalue_reduction_new(rep, block_prevision=True)
 sage: gens = G.gens()
 sage: matrices = [g.matrix() for g in gens]
 sage: rep = representation(gens, matrices)
-sage: G.base_change_eigenvalue_reduction_new(rep)
+sage: G.base_change_equivariant_reduced(rep)
 ([[
 [2 0 0]        
 [0 2 0]        
@@ -2240,7 +2240,7 @@ sage: G.base_change_eigenvalue_reduction_new(rep)
 <pre><code>sage: H = SymmetricGroup(3)
 sage: G = FiniteGroup(H);
 sage: reg = G.regular_representation();
-sage: G.base_change_eigenvalue_reduction_new(reg,block_prevision=True)
+sage: G.base_change_equivariant_reduced(reg,block_prevision=True)
 1 block size 1x1
 1 block size 1x1
 2 block size 2x2
@@ -3115,7 +3115,7 @@ Representation space: Vector space of dimension 2 over Symbolic Ring
 sage: generators = G.gens()
 sage: matrices = [g.matrix() for g in generators]
 sage: rep = representation(generators, matrices)
-sage: subspaces = G.base_change_eigenvalue_reduction_new(rep) #The Invariant Subspaces
+sage: subspaces = G.base_change_equivariant_reduced(rep) #The Invariant Subspaces
 sage: A = matrix.circulant([1,2,3,4]); #An equivariant Operator 
 sage: rep.is_equivariant_to(A)
 True
@@ -3138,7 +3138,7 @@ sage: operator = matrix([[ 4, -1, -0, -1, -0, -0, -0, -0, -0],
                         [-0, -0, -0, -0, -0, -1, -0, -1,  4]])  #An equivariant Operator 
 sage: rep.is_equivariant_to(operator)
 True
-sage: subspaces = G.base_change_eigenvalue_reduction_new(rep) #The Invariant Subspaces
+sage: subspaces = G.base_change_equivariant_reduced(rep) #The Invariant Subspaces
 sage: [get_block(k[0],operator) for k in subspaces[0]] # The block decomposition of the equivariant operator
 [
 [ 4 -2  0]                   
@@ -3156,7 +3156,7 @@ sage: reg = G.regular_representation();
 sage: Id = matrix.identity(reg.degree()); # Identity matrix
 sage: reg.is_equivariant_to(Id)
 True
-sage: subspaces = G.base_change_eigenvalue_reduction_new(reg) #The Invariant Subspaces
+sage: subspaces = G.base_change_equivariant_reduced(reg) #The Invariant Subspaces
 sage: [get_block(k[0],Id) for k in subspaces[0]] # The block decomposition of the equivariant operator
 [
 [1], [1],
