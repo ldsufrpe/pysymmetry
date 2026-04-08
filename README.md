@@ -2,6 +2,9 @@
 
 PySymmetry is a SageMath-based Python package for computational group representation theory. It provides a suite of tools for working with finite groups and their representations, enabling researchers to perform complex calculations in a straightforward and efficient manner.
 
+The paper presenting PySymmetry has been submitted to the journal **Computer Physics Communications** and the manuscript can be accessed at [https://doi.org/10.48550/arXiv.2509.19479](https://doi.org/10.48550/arXiv.2509.19479):
+> **PySymmetry: A Sage/Python Framework for the Symmetry Reduction of Linear G-Equivariant Systems**
+
 For a detailed API reference and tutorials, please see the **[Official Documentation](https://ldsufrpe.github.io/pysymmetry/)**.
 
 ## Directory Structure
@@ -285,6 +288,7 @@ Troubleshooting
 
 ## References
 
+  - *PySymmetry: A Sage/Python Framework for the Symmetry Reduction of Linear G-Equivariant Systems*. Submitted to **Computer Physics Communications**. Manuscript: [https://doi.org/10.48550/arXiv.2509.19479](https://doi.org/10.48550/arXiv.2509.19479)
   - Serre, J.-P. *Linear Representations of Finite Groups*. Springer, 1977.
   - Stiefel, E. and Fässler, A. *Group Theoretical Methods and Their Applications*. Springer, 2012.
 
