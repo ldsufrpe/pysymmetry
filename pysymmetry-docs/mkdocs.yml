@@ -43,6 +43,11 @@ extra_javascript:
   - https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js
   - javascripts/katex-init.js
 
+extra:
+  analytics:
+    provider: google
+    property: G-6SH2QK1DRJ
+
 nav:
   - Home: index.md
   - Installation: installation.md
