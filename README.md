@@ -22,8 +22,11 @@ pysymmetry/
 │   ├── timer.py
 │   └── test.py
 ├── Examples/
-│   ├── exemplo.ipynb
-│   └── ... (other examples)
+│   ├── Chemistry/GF_problem.ipynb
+│   ├── pde/Schrodinger_benchmark.ipynb
+│   ├── pde/simulations eigenvalues 1d.ipynb
+│   ├── pde/simulations eigenvalues 2d.ipynb
+│   └── Symmetry_Reduction/D4_Group.ipynb
 ├── README.md
 └── ... (other documentation and package files)
 ```
@@ -33,9 +36,32 @@ pysymmetry/
       - **`pysymmetry.py`**: Contains the core functionality of the package, including the `FiniteGroup` class and functions for working with representations.
       - **`pde.py`**, **`parallel.py`**, **`util.py`**, **`timer.py`**: Utility modules for partial differential equations, parallel processing, general utilities, and timing, respectively.
       - **`test.py`**: Contains the unit tests for the package.
-  - **`pysymmetry/Examples/`**: Contains Jupyter notebooks with usage examples.
-      - **`exemplo.ipynb`**: A notebook demonstrating the basic features of the package.
+  - **`pysymmetry/Examples/`**: Contains Jupyter notebooks with usage examples, including
+    the notebooks that reproduce the results of the accompanying paper (see
+    *Reproducing the results in the paper* below).
   - **`pysymmetry/README.md`**: The main README file for the project.
+
+## Reproducing the results in the paper
+
+Each figure and table that the framework generates in the accompanying paper is produced
+by one notebook under `Examples/`. Paths are relative to `Examples/`.
+
+| Artifact in the paper | Notebook |
+| --- | --- |
+| Correctness validation, 2D Laplacian spectrum (`eigenvalue_comparison.png`) | `pde/simulations eigenvalues 2d.ipynb` |
+| Schrödinger benchmark table and its two figures (`fig_schrodinger_performance.png`, `fig_schrodinger_speedup.png`) | `pde/Schrodinger_benchmark.ipynb` |
+| GF method: symmetry-adapted basis and block-diagonal form | `Chemistry/GF_problem.ipynb` |
+| Worked $D_4$ workflow of the appendix | `Symmetry_Reduction/D4_Group.ipynb` |
+
+Two tables in the paper are not produced by a notebook: the qualitative comparison of
+packages, compiled from their documentation and publications, and the table of groups and
+matrix orders for the nested-cube problem, whose computations are reported in
+Santos & da Silva, *Regular and Chaotic Dynamics* **31**(4):531–559 (2026),
+doi:[10.1134/S1560354726520023](https://doi.org/10.1134/S1560354726520023).
+
+`pde/simulations eigenvalues 1d.ipynb` is a 1D companion example and reproduces nothing in
+the paper. The notebooks display their figures inline; they do not write the image files
+used by the manuscript.
 
 ## Installation
 
@@ -253,6 +279,15 @@ Install optional test dependencies inside Sage
   sage -pip install pytest pytest-html numpy
   ```
   Note: NumPy typically ships with Sage, but the command above ensures it is present.
+
+Python packages required by the notebooks in `Examples/`
+- The benchmark notebook `Examples/pde/Schrodinger_benchmark.ipynb` additionally
+  requires **pandas** (results table) and **matplotlib** (figures). Neither ships
+  with every SageMath build, so install them into the Sage environment before
+  running the notebooks:
+  ```bash
+  sage -pip install pandas matplotlib
+  ```
 
 Run the tests
 You can run the tests using either Python's built-in unittest (simplest) or pytest.

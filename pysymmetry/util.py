@@ -22,6 +22,7 @@ __all__ = [
  'laplacian2d',
  'laplacian1d',
 'advection_diffusion_2d', 
+ 'schrodinger_complex_potential_2d',
   'to_csr',
   'to_csc',
   'view'
@@ -30,7 +31,7 @@ from sage.all import *
 from sage.libs.gap.element import GapElement
 from scipy.sparse import csr_matrix, coo_matrix, csc_matrix
 from scipy.linalg import block_diag
-from scipy.sparse import spdiags, kronsum, kron, identity
+from scipy.sparse import spdiags, kronsum, kron, identity, diags
 
 
 def to_csr(m):
