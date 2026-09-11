@@ -1,0 +1,33 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+title: "PySymmetry"
+abstract: >-
+  A Sage/Python framework for the symmetry reduction of G-equivariant linear
+  systems, built on the constructive formulation of classical representation
+  theory.
+authors:
+  - family-names: "da Silva"
+    given-names: "Leon D."
+    affiliation: "Universidade Federal Rural de Pernambuco"
+    orcid: "https://orcid.org/0000-0002-2823-3418"
+  - family-names: "Santos"
+    given-names: "Marcelo P."
+    affiliation: "Universidade Federal Rural de Pernambuco"
+    orcid: "https://orcid.org/0000-0002-9023-0728"
+version: "1.0"
+date-released: "2026-09-11"
+license: MIT
+repository-code: "https://github.com/ldsufrpe/pysymmetry"
+url: "https://ldsufrpe.github.io/pysymmetry/"
+doi: "10.5281/zenodo.16534703"
+identifiers:
+  - type: doi
+    value: "10.5281/zenodo.22709708"
+    description: "Version DOI of release v1.0. The top-level doi is the concept DOI, which always resolves to the latest archived version."
+keywords:
+  - representation theory
+  - symmetry reduction
+  - group theory
+  - equivariant operators
+  - SageMath
