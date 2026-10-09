@@ -25,6 +25,22 @@ identifiers:
   - type: doi
     value: "10.5281/zenodo.22709708"
     description: "Version DOI of release v1.0. The top-level doi is the concept DOI, which always resolves to the latest archived version."
+preferred-citation:
+  type: article
+  title: "PySymmetry: A Sage/Python Framework for the Symmetry Reduction of Linear G-Equivariant Systems"
+  authors:
+    - family-names: "da Silva"
+      given-names: "Leon D."
+      orcid: "https://orcid.org/0000-0002-2823-3418"
+    - family-names: "Santos"
+      given-names: "Marcelo P."
+      orcid: "https://orcid.org/0000-0002-9023-0728"
+  journal: "Computer Physics Communications"
+  year: 2026
+  month: 10
+  start: 110455
+  doi: "10.1016/j.cpc.2026.110455"
+  url: "https://doi.org/10.1016/j.cpc.2026.110455"
 keywords:
   - representation theory
   - symmetry reduction

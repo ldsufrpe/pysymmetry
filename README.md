@@ -2,8 +2,10 @@
 
 PySymmetry is a SageMath-based Python package for computational group representation theory. It provides a suite of tools for working with finite groups and their representations, enabling researchers to perform complex calculations in a straightforward and efficient manner.
 
-The paper presenting PySymmetry has been submitted to the journal **Computer Physics Communications**. 
-> **PySymmetry: A Sage/Python Framework for the Symmetry Reduction of Linear G-Equivariant Systems (2026). [arXiv:2509.19479v1](https://doi.org/10.48550/arXiv.2509.19479)**
+The paper presenting PySymmetry is published in **Computer Physics Communications** (open access):
+> L. D. da Silva and M. P. Santos, **PySymmetry: A Sage/Python Framework for the Symmetry Reduction of Linear G-Equivariant Systems**, *Comput. Phys. Commun.* (2026) 110455. [doi:10.1016/j.cpc.2026.110455](https://doi.org/10.1016/j.cpc.2026.110455)
+
+If you use PySymmetry, please cite this paper (see *Citing PySymmetry* below).
 
 For a detailed API reference and tutorials, please see the **[Official Documentation](https://ldsufrpe.github.io/pysymmetry/)**.
 
@@ -321,9 +323,27 @@ Troubleshooting
 - Import errors: Make sure you are running tests via Sage (e.g., `sage ...`). Regular system Python will not provide `sage.all`.
 - NumPy missing: Install it inside Sage with `sage -pip install numpy`.
 
+## Citing PySymmetry
+
+If you use PySymmetry in your research, please cite the paper:
+
+```bibtex
+@article{daSilva2026PySymmetry,
+  author  = {da Silva, Leon D. and Santos, Marcelo P.},
+  title   = {{PySymmetry}: A {Sage/Python} Framework for the Symmetry Reduction of Linear {$G$}-Equivariant Systems},
+  journal = {Computer Physics Communications},
+  pages   = {110455},
+  year    = {2026},
+  doi     = {10.1016/j.cpc.2026.110455}
+}
+```
+
+The release that accompanies the paper, v1.0, is archived on Zenodo at
+[doi:10.5281/zenodo.22709708](https://doi.org/10.5281/zenodo.22709708).
+
 ## References
 
-  - *PySymmetry: A Sage/Python Framework for the Symmetry Reduction of Linear G-Equivariant Systems*. Submitted to **Computer Physics Communications**. Manuscript: [https://doi.org/10.48550/arXiv.2509.19479](https://doi.org/10.48550/arXiv.2509.19479)
+  - da Silva, L. D. and Santos, M. P. *PySymmetry: A Sage/Python Framework for the Symmetry Reduction of Linear G-Equivariant Systems*. **Computer Physics Communications** (2026) 110455. [https://doi.org/10.1016/j.cpc.2026.110455](https://doi.org/10.1016/j.cpc.2026.110455). Preprint: [arXiv:2509.19479](https://doi.org/10.48550/arXiv.2509.19479)
   - Serre, J.-P. *Linear Representations of Finite Groups*. Springer, 1977.
   - Stiefel, E. and Fässler, A. *Group Theoretical Methods and Their Applications*. Springer, 2012.
 
